@@ -5,7 +5,7 @@
 
 <body>
 
-    @include('frontend.includes.preloader')
+    {{-- @include('frontend.includes.preloader') --}}
 
 
     @include('frontend.includes.top_header')

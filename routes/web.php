@@ -30,6 +30,15 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
 
     //Teacher
     Route::resource('/teacher', 'App\Http\Controllers\TeacherController');
+
+    //Classes
+    Route::resource('/classes', 'App\Http\Controllers\ClassesController');
+
+    //Setting
+    Route::resource('/setting', 'App\Http\Controllers\backend\SettingController');
+    Route::post('/setting/{dbtable}', ['as' => 'setting.stores', 'uses' => 'App\Http\Controllers\backend\SettingController@store']);
+    Route::post('/setting/{id}/{dbtable}/update', ['as' => 'setting.updates', 'uses' => 'App\Http\Controllers\backend\SettingController@update']);
+    Route::post('/setting/{id}/{dbtable}/destroy', ['as' => 'setting.destroing', 'uses' => 'App\Http\Controllers\backend\SettingController@destroy']);
 });
 
 require __DIR__.'/auth.php';

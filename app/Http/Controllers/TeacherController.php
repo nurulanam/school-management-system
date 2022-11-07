@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\backend\Country;
+use App\Models\backend\Position;
 use App\Models\backend\teacher;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        return view('backend.pages.teacher.create');
+
     }
 
     /**
@@ -24,7 +26,9 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Country::all();
+        $positions = Position::all();
+        return view('backend.pages.teacher.create', compact('countries','positions'));
     }
 
     /**

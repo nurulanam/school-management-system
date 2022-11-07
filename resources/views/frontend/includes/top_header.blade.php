@@ -10,11 +10,13 @@
                 <div class="header-right-content">
                     <div class="list">
                         <ul>
-                            <li><a href="graduate-admission.html">Students</a></li>
-                            <li><a href="campus-life.html">Faculty & Staff</a></li>
-                            <li><a href="admission.html">Visitors</a></li>
-                            <li><a href="academics.html">Academics</a></li>
-                            <li><a href="alumni.html">Alumni</a></li>
+                            @guest
+                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li>
+                            @endguest
+                            @auth
+                            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                            @endauth
                         </ul>
                     </div>
                 </div>

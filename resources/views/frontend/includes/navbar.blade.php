@@ -16,9 +16,16 @@
         <div class="container-fluid">
             <nav class="navbar navbar-expand-md navbar-light">
                 <a class="navbar-brand" href="index-3.html">
-                    <img src="{{ asset('frontend') }}/assets/images/logo.png" class="main-logo" alt="logo">
+                    @php
+                        $logo_info = App\Http\Controllers\frontend\FrontendController::avater();
+                    @endphp
+                    <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}" class="main-logo img-fluid" alt="logo" style="max-height: 100px;">
+                    {{-- <img src="{{ asset('backend') }}/assets/images/school/avater/{{ Session::get('school')->school_avater }}" class="main-logo img-fluid" alt="logo" style="max-height: 100px;"> --}}
                     <img src="{{ asset('frontend') }}/assets/images/white-logo.png" class="white-logo"
                         alt="logo">
+                    {{-- <img src="{{ asset('frontend') }}/assets/images/logo.png" class="main-logo" alt="logo">
+                    <img src="{{ asset('frontend') }}/assets/images/white-logo.png" class="white-logo"
+                        alt="logo"> --}}
                 </a>
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto">
