@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\backend\Country;
 use App\Models\backend\Position;
 use App\Models\backend\teacher;
+use App\Models\User;
 use Illuminate\Http\Request;
+use File;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Hash;
 
 class TeacherController extends Controller
 {
@@ -16,6 +20,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
+        $teachers = teacher::all();
+        return view('backend.pages.teacher.manage', compact('teachers'));
 
     }
 
@@ -46,17 +52,58 @@ class TeacherController extends Controller
                 'date_of_birth' => 'required|date',
                 'phone_number' => 'required',
                 'email' => 'required',
-                'password' => 'min:8|required_with:password_confirmation|same:password_confirmation',
-                'password_confirmation' => 'min:8',
                 'blood_group' => 'required',
                 'qualification' => 'required',
                 'gender' => 'required',
                 'street_address' => 'required',
                 'city_name' => 'required',
-                'country' => 'required',
+                'country_id' => 'required',
                 'pin_code' => 'required',
+                'joining_date' => 'required',
+                'position_id' => 'required',
+                'password' => 'min:8|required_with:password_confirmation|same:password_confirmation',
+                'password_confirmation' => 'min:8',
             ]
-            );
+        );
+        $teacher = new teacher();
+        if ($request->hasFile('teacher_avater')) {
+            $file = $request->teacher_avater;
+            $ext = $file->getClientOriginalExtension();
+            $fileName = hexdec(uniqid()).'.'.$ext;
+            $path = public_path('backend/assets/images/school/teacher/');
+            $image = Image::make($file);
+            $image->resize(300,300, function($img){
+                $img->aspectRatio();
+            })->save($path.$fileName);
+
+            $teacher->teacher_avater = $fileName;
+        };
+        $teacher->name = $request->name;
+        $teacher->date_of_birth = $request->date_of_birth;
+        $teacher->phone_number = $request->phone_number;
+        $teacher->email = $request->email;
+        $teacher->blood_group = $request->blood_group;
+        $teacher->qualification = $request->qualification;
+        $teacher->gender = $request->gender;
+        $teacher->street_address = $request->street_address;
+        $teacher->city_name = $request->city_name;
+        $teacher->country_id = $request->country_id;
+        $teacher->pin_code = $request->pin_code;
+        $teacher->joining_date = $request->joining_date;
+        $teacher->leaving_date = $request->leaving_date;
+        $teacher->position_id = $request->position_id;
+        $teacher->save();
+        if($request->password != ''){
+            $register = new User();
+            $register->name = $request->name;
+            $register->email = $request->email;
+            $register->role = 'teacher';
+            $register->password = Hash::make($request->password);
+            $register->save();
+        }
+        return redirect()->back()->with('success', 'Teacher Added Successfully');
+
+
     }
 
     /**
@@ -76,6 +123,25 @@ class TeacherController extends Controller
      * @param  \App\Models\backend\teacher  $teacher
      * @return \Illuminate\Http\Response
      */
+    public function status($id){
+        $status = teacher::find($id);
+        if ($status->status == 'Inactive') {
+            $status->status = 'Hold';
+            $status->update();
+        }elseif ($status->status == 'Hold') {
+            $status->status = 'Active';
+            $status->update();
+        }elseif ($status->status == 'Active') {
+            $status->status = 'Inactive';
+            $status->update();
+        }else{
+            return redirect()->back()->with('error','Status Update Error');
+        }
+        return redirect()->back()->with('success','Status Update Successfull');
+
+
+    }
+
     public function edit(teacher $teacher)
     {
         //

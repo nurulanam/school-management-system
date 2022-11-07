@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\backend\Classes;
+use App\Models\backend\Teacher;
 use Illuminate\Http\Request;
 
 class ClassesController extends Controller
@@ -24,7 +25,8 @@ class ClassesController extends Controller
      */
     public function create()
     {
-        return view('backend.pages.class.create');
+        $teachers = Teacher::all();
+        return view('backend.pages.class.create', compact('teachers'));
     }
 
     /**

@@ -28,7 +28,7 @@ return new class extends Migration
             $table->unsignedBigInteger('country_id');
             $table->integer('pin_code');
             $table->date('joining_date');
-            $table->date('leaving_date');
+            $table->date('leaving_date')->nullable(true);
             $table->unsignedBigInteger('position_id');
             $table->string('status')->default('Inactive')->comment('Active,Hold,Inactive');
             $table->foreign('country_id')->references('id')->on('countries');

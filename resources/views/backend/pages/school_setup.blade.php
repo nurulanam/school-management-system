@@ -143,7 +143,7 @@
                                 </th>
                                 <td>{{ $key+=1 }}</td>
                                 <td>
-                                    <img src="{{  asset('backend/assets/images/school/avater').'/'.$school->school_avater }}" class="img-fluid img-thumbnail " width="80px">
+                                    <img src="{{  asset('backend/assets/images/school/avater').'/'.$school->school_avater }}" class="img-fluid img-thumbnail" width="80px">
                                 </td>
                                 <td>{{ $school->school_name }}</td>
                                 <td>{{ $school->school_phone_number }}</td>

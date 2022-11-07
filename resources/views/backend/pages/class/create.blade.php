@@ -57,7 +57,10 @@
                                                     class="text-danger">*</span></label>
                                             <select name="class_teacher_id" id="ClassTeacher" class="form-control">
                                                 <option>Select Class Teacher</option>
-                                                <option value="">O+</option>
+                                                @foreach ($teachers as $teacher)
+                                                    <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                                @endforeach
+
                                             </select>
                                             @error('class_teacher_id')
                                                 <span class="text-danger">{{ $message }}</span>

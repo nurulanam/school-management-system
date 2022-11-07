@@ -2,8 +2,6 @@
 
 namespace App\Models\backend;
 
-use App\Models\backend\Country;
-use App\Models\backend\Position;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -31,10 +29,10 @@ class Teacher extends Model
 
     public function position()
     {
-        return $this->belongsTo(Position::class);
+        return $this->belongsTo('App\Models\backend\Position');
     }
     public function country()
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo('App\Models\backend\Country');
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\frontend\FrontendController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
 
     //Teacher
     Route::resource('/teacher', 'App\Http\Controllers\TeacherController');
+    Route::get('/teacher/{id}/status', ['as' => 'teacher.status', 'uses' => 'App\Http\Controllers\TeacherController@status']);
 
     //Classes
     Route::resource('/classes', 'App\Http\Controllers\ClassesController');
