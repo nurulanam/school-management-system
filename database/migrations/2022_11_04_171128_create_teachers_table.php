@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('teacher_avater');
             $table->string('name');
             $table->date('date_of_birth');
@@ -30,7 +31,7 @@ return new class extends Migration
             $table->date('joining_date');
             $table->date('leaving_date')->nullable(true);
             $table->unsignedBigInteger('position_id');
-            $table->string('status')->default('Inactive')->comment('Active,Hold,Inactive');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('country_id')->references('id')->on('countries');
             $table->foreign('position_id')->references('id')->on('positions');
             $table->timestamps();

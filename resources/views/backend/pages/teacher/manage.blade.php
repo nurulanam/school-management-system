@@ -72,15 +72,12 @@
                                                 <td>{{ $teacher->position->position_name }}</td>
                                                 <td>{{ $teacher->phone_number }}</td>
                                                 <td>
-                                                        @if ($teacher->status == 'Inactive')
-                                                            <a href="{{ route('teacher.status', $teacher->id) }}" class="btn btn-danger btn-sm"> <i
+                                                        @if ($teacher->user->status == 'inactive')
+                                                            <a href="{{ route('teacher.status', $teacher->user->id) }}" class="btn btn-danger btn-sm"> <i
                                                                     class="mdi mdi-arrow-down-thin"></i></a>
-                                                        @elseif ($teacher->status == 'Active')
-                                                            <a href="{{ route('teacher.status', $teacher->id) }}" class="btn btn-primary btn-sm"> <i
+                                                        @elseif ($teacher->user->status == 'active')
+                                                            <a href="{{ route('teacher.status', $teacher->user->id) }}" class="btn btn-primary btn-sm"> <i
                                                                     class="mdi mdi-arrow-up-thin"></i></a>
-                                                        @elseif ($teacher->status == 'Hold')
-                                                            <a href="{{ route('teacher.status', $teacher->id) }}" class="btn btn-success btn-sm"> <i
-                                                                    class="mdi mdi-align-vertical-distribute"></i></a>
                                                         @endif
                                                 </td>
                                                 <td>

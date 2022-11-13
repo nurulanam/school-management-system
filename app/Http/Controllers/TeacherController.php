@@ -51,7 +51,7 @@ class TeacherController extends Controller
                 'name' => 'required',
                 'date_of_birth' => 'required|date',
                 'phone_number' => 'required',
-                'email' => 'required',
+                'email' => 'required|unique:users',
                 'blood_group' => 'required',
                 'qualification' => 'required',
                 'gender' => 'required',
@@ -65,6 +65,15 @@ class TeacherController extends Controller
                 'password_confirmation' => 'min:8',
             ]
         );
+        if($request->password != ''){
+            $register = new User();
+            $register->name = $request->name;
+            $register->email = $request->email;
+            $register->role = 'teacher';
+            $register->status = 'active';
+            $register->password = Hash::make($request->password);
+            $register->save();
+        }
         $teacher = new teacher();
         if ($request->hasFile('teacher_avater')) {
             $file = $request->teacher_avater;
@@ -78,6 +87,8 @@ class TeacherController extends Controller
 
             $teacher->teacher_avater = $fileName;
         };
+        $teacher->user_id = $register->id;
+        $teacher->name = $request->name;
         $teacher->name = $request->name;
         $teacher->date_of_birth = $request->date_of_birth;
         $teacher->phone_number = $request->phone_number;
@@ -93,14 +104,7 @@ class TeacherController extends Controller
         $teacher->leaving_date = $request->leaving_date;
         $teacher->position_id = $request->position_id;
         $teacher->save();
-        if($request->password != ''){
-            $register = new User();
-            $register->name = $request->name;
-            $register->email = $request->email;
-            $register->role = 'teacher';
-            $register->password = Hash::make($request->password);
-            $register->save();
-        }
+
         return redirect()->back()->with('success', 'Teacher Added Successfully');
 
 
@@ -124,15 +128,12 @@ class TeacherController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function status($id){
-        $status = teacher::find($id);
-        if ($status->status == 'Inactive') {
-            $status->status = 'Hold';
+        $status = User::find($id);
+        if ($status->status == 'inactive') {
+            $status->status = 'active';
             $status->update();
-        }elseif ($status->status == 'Hold') {
-            $status->status = 'Active';
-            $status->update();
-        }elseif ($status->status == 'Active') {
-            $status->status = 'Inactive';
+        }elseif ($status->status == 'active') {
+            $status->status = 'inactive';
             $status->update();
         }else{
             return redirect()->back()->with('error','Status Update Error');

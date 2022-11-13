@@ -2,6 +2,7 @@
 
 namespace App\Models\backend;
 
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -9,6 +10,7 @@ class Teacher extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_id',
         'teacher_avater',
         'name',
         'date_of_birth',
@@ -24,9 +26,12 @@ class Teacher extends Model
         'joining_date',
         'leaving_date',
         'position_id',
-        'status',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
     public function position()
     {
         return $this->belongsTo('App\Models\backend\Position');

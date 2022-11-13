@@ -125,7 +125,8 @@
                         {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem incid idunt
                             ut labore et dolore magna aliqua. Ut enim ad minim ven iam quis nostrud xerci tation
                             ulla mco laboris nisi ut </p> --}}
-                        {!! $school_info->school_description !!}
+                            {!! $school_info->school_description !!}
+
                     </div>
                     {{-- <div class="list">
                         <div class="row">
