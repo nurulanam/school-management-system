@@ -14,5 +14,6 @@ class Classes extends Model
         'class_teacher_id',
         'class_start',
         'class_end',
+        'status',
     ];
 }

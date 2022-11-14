@@ -37,7 +37,21 @@ class ClassesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'class_name' => 'required',
+                'class_number' => 'required',
+                'class_start' => 'required',
+            ]
+        );
+        $class = new Classes();
+        $class->class_name = $request->class_name;
+        $class->class_number = $request->class_number;
+        $class->class_teacher_id = $request->class_teacher_id;
+        $class->class_start = $request->class_start;
+        $class->class_end = $request->class_end;
+        $class->save();
+        return redirect()->back();
     }
 
     /**

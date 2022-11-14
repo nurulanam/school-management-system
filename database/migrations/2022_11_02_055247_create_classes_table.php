@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('class_number');
             $table->string('class_teacher_id');
             $table->date('class_start');
-            $table->date('class_end');
+            $table->date('class_end')->nullable(true);
+            $table->string('status')->default('active')->comment('active,inactive');
             $table->timestamps();
         });
     }
