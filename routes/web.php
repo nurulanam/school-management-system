@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\backend\DashboardController;
-use App\Http\Controllers\frontend\FrontendController;
+use App\Models\backend\Classes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClassesController;
+use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\frontend\FrontendController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +37,10 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
 
     //Classes
     Route::resource('/classes', 'App\Http\Controllers\ClassesController');
+    Route::get('/classes/{id}/status', [ClassesController::class, 'status'])->name('classes.status');
+    Route::put('/classes/{id}/update', ['as' => 'classes.updates', 'uses' => 'App\Http\Controllers\ClassesController@update']);
+    Route::delete('/classes/{id}/delete', ['as' => 'classes.deletes', 'uses' => 'App\Http\Controllers\ClassesController@destroy']);
+
 
     //Setting
     Route::resource('/setting', 'App\Http\Controllers\backend\SettingController');

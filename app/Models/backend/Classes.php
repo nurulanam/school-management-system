@@ -2,8 +2,8 @@
 
 namespace App\Models\backend;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Classes extends Model
 {
@@ -16,4 +16,11 @@ class Classes extends Model
         'class_end',
         'status',
     ];
+
+    public function teacherName()
+    {
+        return $this->belongsTo('App\Models\backend\Teacher', 'class_teacher_id');
+    }
+
 }
+

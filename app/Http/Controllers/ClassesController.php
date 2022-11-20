@@ -15,7 +15,9 @@ class ClassesController extends Controller
      */
     public function index()
     {
-        //
+        $teachers = Teacher::all();
+        $classes = Classes::all();
+        return view('backend.pages.class.manage', compact('teachers','classes'));
     }
 
     /**
@@ -25,8 +27,7 @@ class ClassesController extends Controller
      */
     public function create()
     {
-        $teachers = Teacher::all();
-        return view('backend.pages.class.create', compact('teachers'));
+
     }
 
     /**
@@ -51,7 +52,7 @@ class ClassesController extends Controller
         $class->class_start = $request->class_start;
         $class->class_end = $request->class_end;
         $class->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Class Added Successfully');
     }
 
     /**
@@ -76,6 +77,20 @@ class ClassesController extends Controller
         //
     }
 
+    public function status($id){
+        $class = Classes::find($id);
+        if($class->status == 'active'){
+            $class->status = 'inactive';
+        }elseif($class->status == 'inactive'){
+            $class->status = 'active';
+        }else{
+            return redirect()->back()->with('error', 'Please Check Your Value');
+        }
+        $class->update();
+        return redirect()->back()->with('success', 'Status Updated Successfully');
+
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -83,9 +98,27 @@ class ClassesController extends Controller
      * @param  \App\Models\backend\Classes  $classes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Classes $classes)
+    // public function update(Request $request, Classes $classes)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate(
+            [
+                'class_name' => 'required',
+                'class_number' => 'required',
+                'class_start' => 'required',
+            ]
+        );
+        $classes = Classes::find($id);
+        $classes->class_name = $request->class_name;
+        $classes->class_number = $request->class_number;
+        $classes->class_teacher_id = $request->class_teacher_id;
+        $classes->class_start = $request->class_start;
+        if($request->class_end != ''){
+             $classes->class_end = $request->class_end;
+        }
+        $classes->update();
+        return redirect()->back()->with('success', 'Class Updated Successfully');
+
     }
 
     /**
@@ -94,8 +127,11 @@ class ClassesController extends Controller
      * @param  \App\Models\backend\Classes  $classes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Classes $classes)
+    // public function destroy(Classes $classes)
+    public function destroy($id)
     {
-        //
+        $classes = Classes::find($id);
+        $classes->delete();
+        return redirect()->back()->with('info', 'Deleted successfully');
     }
 }

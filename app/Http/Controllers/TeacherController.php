@@ -105,7 +105,7 @@ class TeacherController extends Controller
         $teacher->position_id = $request->position_id;
         $teacher->save();
 
-        return redirect()->back()->with('success', 'Teacher Added Successfully');
+        return redirect()->route('teacher.index')->with('success', 'Teacher Added Successfully');
 
 
     }
@@ -138,7 +138,7 @@ class TeacherController extends Controller
         }else{
             return redirect()->back()->with('error','Status Update Error');
         }
-        return redirect()->back()->with('success','Status Update Successfull');
+        return redirect()->back()->with('info','Status Updated Successfully');
 
 
     }

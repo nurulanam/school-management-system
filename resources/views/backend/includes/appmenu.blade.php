@@ -110,9 +110,7 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a href="{{ route('classes.index') }}" class="nav-link"
-                                    data-key="t-horizontal">Teachers</a>
-                                <a href="{{ route('classes.create') }}" class="nav-link"
-                                    data-key="t-horizontal">Create</a>
+                                    data-key="t-horizontal">Classes</a>
                             </li>
                         </ul>
                     </div>

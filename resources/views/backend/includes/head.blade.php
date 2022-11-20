@@ -34,6 +34,9 @@
     <link href="{{asset('backend')}}/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="{{asset('backend')}}/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+
+    {{-- toastr cdn  --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- custom Css-->
     <link href="{{asset('backend')}}/assets/css/custom.min.css" rel="stylesheet" type="text/css" />
 

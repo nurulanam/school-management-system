@@ -17,10 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('class_name');
             $table->string('class_number');
-            $table->string('class_teacher_id');
+            $table->unsignedBigInteger('class_teacher_id');
             $table->date('class_start');
             $table->date('class_end')->nullable(true);
-            $table->string('status')->default('active')->comment('active,inactive');
+            $table->string('status')->default('active')->nullable(true)->comment('active,inactive');
+            $table->foreign('class_teacher_id')->references('id')->on('teachers');
             $table->timestamps();
         });
     }

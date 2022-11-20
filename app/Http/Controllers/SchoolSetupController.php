@@ -77,12 +77,10 @@ class SchoolSetupController extends Controller
 
                 $file->move('backend/assets/images/school/avater', $fileName);
                 $setup->school_avater = $fileName;
-
             }
-
             $setup->school_description = $request->school_description;
             $setup->save();
-            return redirect()->back();
+            return redirect()->route('school-setup.index')->with('success', 'School info Added Successfully');
         }elseif($rows > 0){
             $update = SchoolSetup::latest()->first();
             $update->school_name = $request->school_name;
@@ -108,7 +106,7 @@ class SchoolSetupController extends Controller
             $update->school_description = $request->school_description;
 
             $update->update();
-            return redirect()->back();
+            return redirect()->route('school-setup.index')->with('success', 'School info Updated Successfully');
         }
 
 
@@ -191,7 +189,7 @@ class SchoolSetupController extends Controller
             $schoolSetup->school_description = $request->school_description;
 
             $schoolSetup->update();
-            return redirect()->route('school-setup.index');
+            return redirect()->route('school-setup.index')->with('success', 'School info Updated Successfully');;
     }
 
     /**
@@ -210,7 +208,7 @@ class SchoolSetupController extends Controller
             }
             $schoolSetup->delete();
 
-            return redirect()->back();
+            return redirect()->route('school-setup.index')->with('error', 'School info Deleted Successfully');;
         }
     }
 }
