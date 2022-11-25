@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\backend\Classes;
+use App\Models\backend\Country;
 use App\Models\backend\Student;
 use Illuminate\Http\Request;
 
@@ -24,7 +26,9 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Country::all();
+        $classes = Classes::all();
+        return view('backend.pages.student.create', compact('countries','classes'));
     }
 
     /**

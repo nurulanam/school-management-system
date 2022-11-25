@@ -18,12 +18,7 @@ class SubjectController extends Controller
     public function index()
     {
         $classes = Classes::where('status', 'active')->get();
-        // $users = User::where('role', 'teacher');
-        // $teachers = Teacher::Where();
         $teachers = Teacher::all();
-        if ($teachers->user_id) {
-            
-        }
         $subjects = Subject::all();
         return view('backend.pages.subject.subjects', compact('classes', 'teachers', 'subjects'));
     }
