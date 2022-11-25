@@ -41,7 +41,7 @@ class ClassesController extends Controller
         $request->validate(
             [
                 'class_name' => 'required',
-                'class_number' => 'required',
+                'class_number' => 'required|unique:classes',
                 'class_start' => 'required',
             ]
         );
@@ -104,7 +104,7 @@ class ClassesController extends Controller
         $request->validate(
             [
                 'class_name' => 'required',
-                'class_number' => 'required',
+                'class_number' => 'required|unique:classes',
                 'class_start' => 'required',
             ]
         );

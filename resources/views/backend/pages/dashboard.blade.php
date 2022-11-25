@@ -82,7 +82,7 @@
                                     <div class="flex-grow-1 overflow-hidden">
                                         <p
                                             class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                                            Total Earnings</p>
+                                            Teachers</p>
                                     </div>
                                     <div class="flex-shrink-0">
                                         <h5 class="text-success fs-14 mb-0">
@@ -93,8 +93,8 @@
                                 </div>
                                 <div class="d-flex align-items-end justify-content-between mt-4">
                                     <div>
-                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span
-                                                class="counter-value" data-target="559.25">0</span>k
+                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4">Total: <span
+                                                class="counter-value" data-target="{{$teachers}}">{{$teachers}}</span>
                                         </h4>
                                         <a href="" class="text-decoration-underline">View net
                                             earnings</a>
