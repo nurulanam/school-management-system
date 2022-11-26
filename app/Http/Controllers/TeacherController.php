@@ -89,7 +89,6 @@ class TeacherController extends Controller
         };
         $teacher->user_id = $register->id;
         $teacher->name = $request->name;
-        $teacher->name = $request->name;
         $teacher->date_of_birth = $request->date_of_birth;
         $teacher->phone_number = $request->phone_number;
         $teacher->email = $request->email;

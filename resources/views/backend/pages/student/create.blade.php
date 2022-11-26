@@ -117,16 +117,6 @@
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        {{-- <div class="col-md-6 mb-3">
-                                            <label for="Qualification" class="form-label">Qualification<span
-                                                    class="text-danger">*</span></label>
-                                            <input name="qualification" type="text" class="form-control"
-                                                id="Qualification" value="{{ old('qualification') }}"
-                                                placeholder="Qualification">
-                                            @error('qualification')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div> --}}
                                         <div class="col-md-6 mb-3">
                                             <label for="Gender" class="form-label">Gender<span
                                                     class="text-danger">*</span></label>
@@ -233,15 +223,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            {{-- <div class="col-md-12 mb-3">
-                                <label for="LeavingDate" class="form-label">Leaving Date<span
-                                        class="text-danger">*</span></label>
-                                <input name="leaving_date" type="date" class="form-control" id="LeavingDate"
-                                    value="{{ old('leaving_date') }}" placeholder="Leaving Date">
-                                @error('leaving_date')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div> --}}
+
                             <div class="col-md-12 mb-3">
                                 <label for="classId" class="form-label">Class<span class="text-danger">*</span></label>
                                 <select name="class_id" id="classId" class="form-control">
@@ -251,6 +233,16 @@
                                     @endforeach
                                 </select>
                                 @error('class_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label for="rollNumber" class="form-label">Roll Number<span
+                                        class="text-danger">*</span></label>
+                                <input name="roll_number" type="text" class="form-control" id="rollNumber"
+                                    value="{{ old('roll_number') }}" placeholder="Roll Number">
+                                @error('roll_number')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>

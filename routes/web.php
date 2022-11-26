@@ -39,6 +39,9 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
 
     //Student
     Route::resource('/student', StudentController::class);
+    Route::get('/student/{id}/status', [StudentController::class, 'status'])->name('student.status');
+    Route::get('/student/{id}/delete', ['as' => 'student.delete', 'uses' => 'App\Http\Controllers\StudentController@destroy']);
+
 
     //Classes
     Route::resource('/classes', 'App\Http\Controllers\ClassesController');

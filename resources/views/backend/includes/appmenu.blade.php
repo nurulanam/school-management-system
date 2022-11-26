@@ -81,11 +81,29 @@
                 </li>
                 {{-- End Banner  --}}
 
+                {{-- Start Student --}}
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarStudent" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarStudent">
+                        <i class="mdi mdi-kabaddi"></i> <span data-key="t-layouts">Manage Students</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarStudent">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('student.index') }}" class="nav-link"
+                                    data-key="t-horizontal">Students</a>
+                                <a href="{{ route('student.create') }}" class="nav-link"
+                                    data-key="t-horizontal">Create</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+{{-- mdi-account-tie-hat --}}
                 {{-- Start Teacher Menu --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarTeacher" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarTeacher">
-                        <i class="mdi mdi-account-tie-hat"></i> <span data-key="t-layouts">Manage Teachers</span>
+                        <i class="mdi mdi-account-tie"></i> <span data-key="t-layouts">Manage Teachers</span>
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarTeacher">
                         <ul class="nav nav-sm flex-column">
