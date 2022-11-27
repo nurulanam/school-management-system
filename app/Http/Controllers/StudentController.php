@@ -99,7 +99,7 @@ class StudentController extends Controller
         $student->class_id = $request->class_id;
         $student->roll_number = $request->roll_number;
         $student->save();
-        return redirect()->back()->with('success', 'Student Added Successfully');
+        return redirect()->route('student.index')->with('success', 'Student Added Successfully');
     }
 
     /**
@@ -121,7 +121,9 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        $countries = Country::all();
+        $classes = Classes::all();
+        return view('backend.pages.student.edit', compact('student', 'countries', 'classes'));
     }
 
     /**
@@ -149,7 +151,55 @@ class StudentController extends Controller
 
     public function update(Request $request, Student $student)
     {
-        //
+        $request->validate(
+            [
+                'student_avater' => 'mimes:jpeg,png,jpg',
+                'name' => 'required',
+                'date_of_birth' => 'required|date',
+                'phone_number' => 'required',
+                'blood_group' => 'required',
+                'gender' => 'required',
+                'street_address' => 'required',
+                'city_name' => 'required',
+                'country_id' => 'required',
+                'pin_code' => 'required',
+                'joining_date' => 'required',
+                'class_id' => 'required',
+                'roll_number' => 'required'
+            ]
+        );
+        // $student = new Student();
+        $student->user_id = $student->user_id;
+        if ($request->hasFile('student_avater')) {
+
+            $oldFile = 'backend/assets/images/school/student/'.$student->student_avater;
+            if (File::exists(public_path($oldFile))) {
+                    File::delete(public_path($oldFile));
+            };
+            $file = $request->student_avater;
+            $ext = $file->getClientOriginalExtension();
+            $fileName = hexdec(uniqid()).'.'.$ext;
+            $path = public_path('backend/assets/images/school/student/');
+            $image = Image::make($file);
+            $image->resize(300,300, function($img){
+                $img->aspectRatio();
+            })->save($path.$fileName);
+            $student->student_avater = $fileName;
+        };
+        $student->name = $request->name;
+        $student->date_of_birth = $request->date_of_birth;
+        $student->phone_number = $request->phone_number;
+        $student->blood_group = $request->blood_group;
+        $student->gender = $request->gender;
+        $student->street_address = $request->street_address;
+        $student->city_name = $request->city_name;
+        $student->country_id = $request->country_id;
+        $student->pin_code = $request->pin_code;
+        $student->joining_date = $request->joining_date;
+        $student->class_id = $request->class_id;
+        $student->roll_number = $request->roll_number;
+        $student->update();
+        return redirect()->route('student.index')->with('success', 'Student Added Successfully');
     }
 
     /**
