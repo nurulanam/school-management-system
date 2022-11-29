@@ -117,7 +117,8 @@ class AdmissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = FrontAdmission::find($id);
+        return view('backend.pages.frontpages.index.admission.frontAdmissionEdit', compact('data'));
     }
 
     /**
@@ -129,7 +130,31 @@ class AdmissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $update = FrontAdmission::find($id);
+        $update->title = $request->title;
+        $update->top_description = $request->top_description;
+        if($request->hasFile('bg_image')){
+            $oldFile = 'frontend/assets/images/pages/home/admission/'.$update->bg_image;
+
+            if(File::exists(public_path($oldFile))){
+                File::delete(public_path($oldFile));
+            }
+
+            $file = $request->bg_image;
+            $extention = $file->getClientOriginalExtension();
+            $fileName = hexdec(uniqid()).'.'.$extention;
+
+            $file->move('frontend/assets/images/pages/home/admission/', $fileName);
+            $update->bg_image = $fileName;
+        }
+        $update->video_link = $request->video_link;
+        $update->bottom_description = $request->bottom_description;
+        $update->button_text = $request->button_text;
+        $update->button_link = $request->button_link;
+        $update->update();
+
+        return redirect()->route('front-admission.index')->with('success', 'Admission Section Updated Successfully');
+
     }
 
     /**
