@@ -38,7 +38,8 @@
 
                                         <div class="col-md-2 mb-3">
                                             <img id="preview_img" class="img-fluid img-thumbnail shadow"
-                                                src="{{ asset('backend/assets/images/school/student').'/'.$student->student_avater }}" alt="teacher avater"
+                                                src="{{ asset('backend/assets/images/school/student') . '/' . $student->student_avater }}"
+                                                alt="teacher avater"
                                                 style="height: 120px; width: 120px; border-radius: 50%; border: 5px solid rgba(0, 0, 0, 0.151);">
                                             <script>
                                                 $(document).ready(() => {
@@ -105,14 +106,22 @@
                                                     class="text-danger">*</span></label>
                                             <select name="blood_group" id="BloodGroup" class="form-control">
                                                 <option>Select Blood Group</option>
-                                                <option value="O+" @if ($student->blood_group == 'O+') selected @endif>O+</option>
-                                                <option value="O-" @if ($student->blood_group == 'O-') selected @endif>O-</option>
-                                                <option value="A+" @if ($student->blood_group == 'A+') selected @endif>A+</option>
-                                                <option value="A-" @if ($student->blood_group == 'A-') selected @endif>A-</option>
-                                                <option value="B+" @if ($student->blood_group == 'B+') selected @endif>B+</option>
-                                                <option value="B-" @if ($student->blood_group == 'B-') selected @endif>B-</option>
-                                                <option value="AB+" @if ($student->blood_group == 'AB+') selected @endif>AB+</option>
-                                                <option value="AB-" @if ($student->blood_group == 'AB-') selected @endif>AB-</option>
+                                                <option value="O+" @if ($student->blood_group == 'O+') selected @endif>O+
+                                                </option>
+                                                <option value="O-" @if ($student->blood_group == 'O-') selected @endif>O-
+                                                </option>
+                                                <option value="A+" @if ($student->blood_group == 'A+') selected @endif>A+
+                                                </option>
+                                                <option value="A-" @if ($student->blood_group == 'A-') selected @endif>A-
+                                                </option>
+                                                <option value="B+" @if ($student->blood_group == 'B+') selected @endif>B+
+                                                </option>
+                                                <option value="B-" @if ($student->blood_group == 'B-') selected @endif>B-
+                                                </option>
+                                                <option value="AB+" @if ($student->blood_group == 'AB+') selected @endif>AB+
+                                                </option>
+                                                <option value="AB-" @if ($student->blood_group == 'AB-') selected @endif>AB-
+                                                </option>
                                             </select>
                                             @error('blood_group')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -125,18 +134,21 @@
                                                 <!-- Base Radios -->
                                                 <div class="form-check mb-2">
                                                     <input class="form-check-input" type="radio" name="gender"
-                                                        id="male" value="male" @if ($student->gender == 'male') checked @endif>
+                                                        id="male" value="male"
+                                                        @if ($student->gender == 'male') checked @endif>
                                                     <label class="form-check-label" for="male">Male</label>
                                                 </div>
 
                                                 <div class="form-check mx-2">
                                                     <input class="form-check-input" type="radio" name="gender"
-                                                        id="female" value="female" @if ($student->gender == 'female') checked @endif>
+                                                        id="female" value="female"
+                                                        @if ($student->gender == 'female') checked @endif>
                                                     <label class="form-check-label" for="female">Female</label>
                                                 </div>
                                                 <div class="form-check mx-2">
                                                     <input class="form-check-input" type="radio" name="gender"
-                                                        id="others" value="others" @if ($student->gender == 'others') checked @endif>
+                                                        id="others" value="others"
+                                                        @if ($student->gender == 'others') checked @endif>
                                                     <label class="form-check-label" for="others">Others</label>
                                                 </div>
                                             </div>
@@ -185,7 +197,9 @@
                                     <select class="form-control" id="CountryId" name="country_id">
                                         <option value="">Select Country</option>
                                         @foreach ($countries as $country)
-                                            <option value="{{ $country->id }}" @if ($country->id == $student->country_id) selected @endif>{{ $country->country_name }}</option>
+                                            <option value="{{ $country->id }}"
+                                                @if ($country->id == $student->country_id) selected @endif>
+                                                {{ $country->country_name }}</option>
                                         @endforeach
                                     </select>
                                     @error('country_id')
@@ -230,7 +244,9 @@
                                 <select name="class_id" id="classId" class="form-control">
                                     <option>Select Current Class</option>
                                     @foreach ($classes as $classe)
-                                        <option value="{{ $classe->id }}" @if ($classe->id == $student->class_id) selected @endif>{{ $classe->class_name }}</option>
+                                        <option value="{{ $classe->id }}"
+                                            @if ($classe->id == $student->class_id) selected @endif>{{ $classe->class_name }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 @error('class_id')

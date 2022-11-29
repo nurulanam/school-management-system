@@ -19,7 +19,14 @@ use App\Http\Controllers\SubjectController;
 |
 */
 
-Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
+
+Route::prefix('/')->name('frontend.')->group(function(){
+    Route::get('/', [FrontendController::class, 'index'])->name('index');
+});
+
+// $user_role = Auth()->user()->role;
+
+// if($user_role == 'admin' || $user_role == 'teacher'){
 
 
 Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
@@ -30,8 +37,9 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
     //School Setup
     Route::resource('/school-setup', 'App\Http\Controllers\SchoolSetupController');
 
-    //Banner Setup
-    Route::resource('/banner', 'App\Http\Controllers\BannerController');
+    // Front Pages
+        //Banner Setup
+        Route::resource('/banner', 'App\Http\Controllers\BannerController');
 
     //Teacher
     Route::resource('/teacher', 'App\Http\Controllers\TeacherController');
@@ -61,5 +69,5 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
     Route::post('/setting/{id}/{dbtable}/update', ['as' => 'setting.updates', 'uses' => 'App\Http\Controllers\backend\SettingController@update']);
     Route::post('/setting/{id}/{dbtable}/destroy', ['as' => 'setting.destroing', 'uses' => 'App\Http\Controllers\backend\SettingController@destroy']);
 });
-
+// }
 require __DIR__.'/auth.php';

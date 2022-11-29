@@ -1,12 +1,15 @@
-<div class="navbar-area nav-bg-2">
+@php
+    $logo_info = App\Http\Controllers\frontend\FrontendController::avater();
+@endphp
+<div class="navbar-area nav-bg-1">
     <div class="mobile-responsive-nav">
         <div class="container">
-            <div class="mobile-responsive-menu">
+            <div class="mobile-responsive-menu align-items-center">
                 <div class="logo">
-                    <a href="index-3.html">
-                        <img src="{{ asset('frontend') }}/assets/images/logo.png" class="main-logo" lt="logo">
-                        <img src="{{ asset('frontend') }}/assets/images/white-logo.png" class="white-logo"
-                            alt="logo">
+                    <a href="{{ url('/') }}">
+                        <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}" class="main-logo" lt="logo" style="max-height: 100px;">
+                        <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}" class="white-logo"
+                            alt="logo" style="max-height: 100px;">
                     </a>
                 </div>
             </div>
@@ -14,38 +17,51 @@
     </div>
     <div class="desktop-nav">
         <div class="container-fluid">
-            <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand" href="index-3.html">
-                    @php
-                        $logo_info = App\Http\Controllers\frontend\FrontendController::avater();
-                    @endphp
-                    <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}" class="main-logo img-fluid" alt="logo" style="max-height: 100px;">
-                    {{-- <img src="{{ asset('backend') }}/assets/images/school/avater/{{ Session::get('school')->school_avater }}" class="main-logo img-fluid" alt="logo" style="max-height: 100px;"> --}}
-                    <img src="{{ asset('frontend') }}/assets/images/white-logo.png" class="white-logo"
-                        alt="logo">
-                    {{-- <img src="{{ asset('frontend') }}/assets/images/logo.png" class="main-logo" alt="logo">
-                    <img src="{{ asset('frontend') }}/assets/images/white-logo.png" class="white-logo"
-                        alt="logo"> --}}
+            <nav class="navbar navbar-expand-md navbar-light ">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}"
+                        class="main-logo img-fluid" alt="logo" style="max-height: 100px;">
+                    <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}" class="white-logo" alt="logo" style="max-height: 100px;">
                 </a>
-                <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto">
+                <div class="collapse navbar-collapse mean-menu align-items-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto align-items-center">
                         <li class="nav-item">
-                            <a href="#" class="nav-link dropdown-toggle active">
+                            <a href="{{ url('/') }}" class="nav-linkactive">
                                 Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle">
+                                Academics
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
-                                    <a href="index.html" class="nav-link">Home One</a>
+                                    <a href="#" class="nav-link">Science</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="index-2.html" class="nav-link">Home Two</a>
+                                    <a href="#" class="nav-link">Arts</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="index-3.html" class="nav-link active">Home Three</a>
+                                    <a href="#" class="nav-link">Commerce</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ url('/faq') }}" class="nav-linkactive">
+                                FAQ
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/contact-us') }}" class="nav-linkactive">
+                                Contact Us
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/admission') }}" class="nav-linkactive">
+                                <button class="default-btn btn">Get Addmission</button>
+                            </a>
+                        </li>
+                        {{-- <li class="nav-item">
                             <a href="#" class="nav-link dropdown-toggle">
                                 Pages
                             </a>
@@ -160,18 +176,18 @@
                         </li>
                         <li class="nav-item">
                             <a href="contact-us.html" class="nav-link">Contact Us</a>
-                        </li>
+                        </li> --}}
                     </ul>
-                    <div class="others-options">
+                    {{-- <div class="others-options">
                         <div class="icon">
                             <i class="ri-menu-3-fill" data-bs-toggle="modal" data-bs-target="#sidebarModal"></i>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </nav>
         </div>
     </div>
-    <div class="others-option-for-responsive">
+    {{-- <div class="others-option-for-responsive">
         <div class="container">
             <div class="dot-menu">
                 <div class="inner">
@@ -181,5 +197,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>

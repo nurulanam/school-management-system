@@ -16,7 +16,7 @@ class BannerController extends Controller
     public function index()
     {
         $banners = Banner::all();
-        return view('backend.pages.banner', compact('banners'));
+        return view('backend.pages.frontpages.index.banner', compact('banners'));
     }
 
     /**
@@ -88,7 +88,7 @@ class BannerController extends Controller
      */
     public function edit(Banner $banner)
     {
-        return view('backend.pages.banner_update', compact('banner'));
+        return view('backend.pages.frontpages.index.banner_update', compact('banner'));
     }
 
     /**

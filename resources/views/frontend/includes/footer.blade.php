@@ -3,8 +3,11 @@
         <div class="row">
             <div class="col-lg-4 col-sm-6">
                 <div class="footer-logo-area">
-                    <a href="index.html"><img src="{{ asset('frontend') }}/assets/images/white-logo.png"
-                            alt="Image"></a>
+                    @php
+                    $logo_info = App\Http\Controllers\frontend\FrontendController::avater();
+                @endphp
+                    <a href="{{ url('/') }}"><img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}"
+                            alt="Image" class="img-fluid" alt="logo" style="max-height: 100px;"></a>
                     <p>Sanu University was established by J.H Merthon in 1810 for the public benefit.
                         Afterwards, it
                         is recognized globally</p>

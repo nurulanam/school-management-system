@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/dark.css">
 
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/responsive.css">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/custom.css">
     <link rel="icon" type="image/png" href="{{ asset('frontend') }}/assets/images/favicon.png">
     <title>Sanu - College University HTML Template</title>
 </head>
