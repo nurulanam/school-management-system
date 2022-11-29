@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\frontend\AdmissionController;
 use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
@@ -37,9 +38,10 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
     //School Setup
     Route::resource('/school-setup', 'App\Http\Controllers\SchoolSetupController');
 
-    // Front Pages
+    //## Front Pages ##//
         //Banner Setup
         Route::resource('/banner', 'App\Http\Controllers\BannerController');
+        Route::resource('/front-admission', AdmissionController::class);
 
     //Teacher
     Route::resource('/teacher', 'App\Http\Controllers\TeacherController');

@@ -86,7 +86,7 @@
                                             <a href="{{ route('banner.index') }}" class="nav-link">Banner</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ route('banner.index') }}" class="nav-link">Admission</a>
+                                            <a href="{{ route('front-admission.index') }}" class="nav-link">Admission</a>
                                         </li>
                                     </ul>
                                 </div>

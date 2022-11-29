@@ -109,7 +109,6 @@ class SchoolSetupController extends Controller
             return redirect()->route('school-setup.index')->with('success', 'School info Updated Successfully');
         }
 
-
     }
 
     /**

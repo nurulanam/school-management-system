@@ -455,20 +455,19 @@
         <div class="container">
             <div class="admission-content">
                 <div class="section-title">
-                    <h2>Sanu Admission</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit ut elit tellus luctus nec ullamcorper mattis
-                    </p>
+                    <h2>{{ $frontAdmission->title }}</h2>
+                    <p>{{ $frontAdmission->top_description }}</p>
                 </div>
                 <div class="admission-image">
-                    <img src="{{ asset('frontend/assets/images/admission/admission-1.jpg') }}" alt="Image">
+                    <img src="{{  asset('frontend/assets/images/pages/home/admission').'/'.$frontAdmission->bg_image }}" alt="Image">
                     <div class="icon">
-                        <a class="popup-youtube play-btn" href="https://www.youtube.com/watch?v=6WQCJx_vEX4"><i
+                        <a class="popup-youtube play-btn" href="{{ $frontAdmission->video_link }}"><i
                                 class="ri-play-fill"></i></a>
                     </div>
                 </div>
                 <div class="query text-center">
-                    <p>If You Have Any Query or Facing any Problem Please Contact Us Via Email</p>
-                    <a href="admission.html" class="default-btn btn">More on admission<i class="flaticon-next"></i></a>
+                    <p>{{ $frontAdmission->bottom_description }}</p>
+                    <a href="{{ url("/$frontAdmission->button_link") }}" class="default-btn btn">{{ $frontAdmission->button_text }}<i class="flaticon-next"></i></a>
                 </div>
             </div>
         </div>
