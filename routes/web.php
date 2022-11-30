@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\FrontCampusController;
 use App\Http\Controllers\frontend\AdmissionController;
 use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\StudentController;
@@ -41,6 +42,9 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
     //## Front Pages ##//
         //Banner Setup
         Route::resource('/banner', 'App\Http\Controllers\BannerController');
+        //Campus Setup
+        Route::resource('/front-campus', FrontCampusController::class);
+        //Admission Setup
         Route::resource('/front-admission', AdmissionController::class);
 
     //Teacher

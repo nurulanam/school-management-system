@@ -7,6 +7,7 @@ use App\Models\backend\Banner;
 use App\Models\backend\SchoolSetup;
 use App\Http\Controllers\Controller;
 use App\Models\frontend\FrontAdmission;
+use App\Models\frontend\FrontCampus;
 
 class FrontendController extends Controller
 {
@@ -14,8 +15,9 @@ class FrontendController extends Controller
     {
         $banners = Banner::all();
         $school_info = SchoolSetup::latest()->first();
+        $frontCampus = FrontCampus::latest()->first();
         $frontAdmission = FrontAdmission::latest()->first();
-        return view('frontend.pages.index', compact('banners', 'school_info','frontAdmission'));
+        return view('frontend.pages.index', compact('banners', 'school_info', 'frontCampus','frontAdmission'));
     }
     public static function avater(){
         $school_info = SchoolSetup::latest()->first();

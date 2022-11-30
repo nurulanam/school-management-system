@@ -16,6 +16,7 @@
                 </div>
             @endforeach
         </div>
+
     </div>
 
     <div class="academic-area pt-100 pb-70">
@@ -79,14 +80,14 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="campus-image">
-                        <img src="{{ asset('frontend') }}/assets/images/campus-information/campus-2.jpg" alt="Image">
+                        <img src="{{ asset('frontend/assets/images/pages/home/campus').'/'.$frontCampus->bg_image }}" alt="Image">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="campus-content style-2">
                         <div class="campus-title">
-                            <h2>Campus Information</h2>
-                            {!! $school_info->school_description !!}
+                            <h2>{{ $frontCampus->title }}</h2>
+                            {!! $frontCampus->campus_description !!}
                         </div>
                         {{-- <div class="counter">
                             <div class="row">
@@ -119,7 +120,7 @@
                                 </div>
                             </div>
                         </div> --}}
-                        <a href="campus-life.html" class="default-btn btn">Start your application<i
+                        <a href="{{ url("/$frontCampus->button_link") }}" class="default-btn btn">{{ $frontCampus->title }}<i
                                 class="flaticon-next"></i></a>
                     </div>
                 </div>
