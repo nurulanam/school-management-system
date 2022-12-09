@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     {{-- End Dashboard --}}
-                @endif
+
                 {{-- Start School setup  --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarSchoolSetup" data-bs-toggle="collapse" role="button"
@@ -89,7 +89,8 @@
                                             <a href="{{ route('front-campus.index') }}" class="nav-link">Campus</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ route('front-admission.index') }}" class="nav-link">Admission</a>
+                                            <a href="{{ route('front-admission.index') }}"
+                                                class="nav-link">Admission</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -108,81 +109,87 @@
                             </li>
                         </ul>
                     </div>
-                            {{-- End Banner  --}}
+                    {{-- End Pages setup  --}}
+                    @endif
+                    @if (auth()->user()->role == 'admin' || auth()->user()->role == 'teacher')
 
-                            {{-- Start Student --}}
+                    {{-- Start Student --}}
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarStudent" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarStudent">
+                        <i class="mdi mdi-kabaddi"></i> <span data-key="t-layouts">Manage Students</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarStudent">
+                        <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarStudent" data-bs-toggle="collapse"
-                                    role="button" aria-expanded="false" aria-controls="sidebarStudent">
-                                    <i class="mdi mdi-kabaddi"></i> <span data-key="t-layouts">Manage Students</span>
-                                </a>
-                                <div class="collapse menu-dropdown" id="sidebarStudent">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="{{ route('student.index') }}" class="nav-link"
-                                                data-key="t-horizontal">Students</a>
-                                            <a href="{{ route('student.create') }}" class="nav-link"
-                                                data-key="t-horizontal">Create</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <a href="{{ route('student.index') }}" class="nav-link"
+                                    data-key="t-horizontal">Students</a>
+                                <a href="{{ route('student.create') }}" class="nav-link"
+                                    data-key="t-horizontal">Create</a>
                             </li>
-                            {{-- mdi-account-tie-hat --}}
-                            {{-- Start Teacher Menu --}}
-                            <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarTeacher" data-bs-toggle="collapse"
-                                    role="button" aria-expanded="false" aria-controls="sidebarTeacher">
-                                    <i class="mdi mdi-account-tie"></i> <span data-key="t-layouts">Manage
-                                        Teachers</span>
-                                </a>
-                                <div class="collapse menu-dropdown" id="sidebarTeacher">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="{{ route('teacher.index') }}" class="nav-link"
-                                                data-key="t-horizontal">Teachers</a>
-                                            <a href="{{ route('teacher.create') }}" class="nav-link"
-                                                data-key="t-horizontal">Create</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            {{-- End Teacher Menu  --}}
-
-                            {{-- Start Classes Menu --}}
-                            <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarClasses" data-bs-toggle="collapse"
-                                    role="button" aria-expanded="false" aria-controls="sidebarClasses">
-                                    <i class="mdi mdi-google-classroom"></i> <span data-key="t-layouts">Manage
-                                        Classes</span>
-                                </a>
-                                <div class="collapse menu-dropdown" id="sidebarClasses">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="{{ route('classes.index') }}" class="nav-link"
-                                                data-key="t-horizontal">Class</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ route('subject.index') }}" class="nav-link"
-                                                data-key="t-horizontal">Subject</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            {{-- End Classes Menu  --}}
-
-                            {{-- Start Setting Menu --}}
-                            <li class="menu-title"><span data-key="t-menu">Others Setting</span></li>
-                            <li class="nav-item">
-                                <a class="nav-link menu-link" href="{{ route('setting.index') }}">
-                                    <i class="mdi mdi-spin mdi-youtube-studio"></i>
-                                    <span data-key="t-layouts">Setting</span>
-                                </a>
-                            </li>
-                            {{-- End Setting Menu  --}}
                         </ul>
                     </div>
-                    <!-- Sidebar -->
-        </div>
+                </li>
+                @endif
 
-        <div class="sidebar-background"></div>
+                {{-- mdi-account-tie-hat --}}
+                @if (auth()->user()->role == 'admin')
+                {{-- Start Teacher Menu --}}
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarTeacher" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarTeacher">
+                        <i class="mdi mdi-account-tie"></i> <span data-key="t-layouts">Manage
+                            Teachers</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarTeacher">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('teacher.index') }}" class="nav-link"
+                                    data-key="t-horizontal">Teachers</a>
+                                <a href="{{ route('teacher.create') }}" class="nav-link"
+                                    data-key="t-horizontal">Create</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {{-- End Teacher Menu  --}}
+                @endif
+
+                {{-- Start Classes Menu --}}
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarClasses" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarClasses">
+                        <i class="mdi mdi-google-classroom"></i> <span data-key="t-layouts">Manage
+                            Classes</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarClasses">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('classes.index') }}" class="nav-link"
+                                    data-key="t-horizontal">Class</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('subject.index') }}" class="nav-link"
+                                    data-key="t-horizontal">Subject</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {{-- End Classes Menu  --}}
+
+                {{-- Start Setting Menu --}}
+                <li class="menu-title"><span data-key="t-menu">Others Setting</span></li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('setting.index') }}">
+                        <i class="mdi mdi-spin mdi-youtube-studio"></i>
+                        <span data-key="t-layouts">Setting</span>
+                    </a>
+                </li>
+                {{-- End Setting Menu  --}}
+            </ul>
+        </div>
+        <!-- Sidebar -->
     </div>
+
+    <div class="sidebar-background"></div>
+</div>

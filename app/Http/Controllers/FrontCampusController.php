@@ -15,7 +15,9 @@ class FrontCampusController extends Controller
      */
     public function index()
     {
-        return view('backend.pages.frontpages.index.campus.frontCampus');
+        // $frontCampus = FrontCampus::latest()->first();
+        $frontCampuses = FrontCampus::all();
+        return view('backend.pages.frontpages.index.campus.frontCampus', compact('frontCampuses'));
     }
 
     /**
@@ -112,7 +114,8 @@ class FrontCampusController extends Controller
      */
     public function edit($id)
     {
-        //
+        $frontCampus = FrontCampus::find($id);
+        return view('backend.pages.frontpages.index.campus.FrontCampusEdit', compact('frontCampus'));
     }
 
     /**
@@ -124,7 +127,37 @@ class FrontCampusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(
+            [
+                'title' => 'required',
+                'campus_description' => 'required',
+                'button_text' => 'required',
+                'button_link' => 'required',
+            ]
+        );
+        $update = FrontCampus::find($id);
+        $update->title = $request->title;
+        $update->campus_description = $request->campus_description;
+        if($request->hasFile('bg_image')){
+            $oldFile = 'frontend/assets/images/pages/home/campus/'.$update->bg_image;
+
+            if(File::exists(public_path($oldFile))){
+                File::delete(public_path($oldFile));
+            }
+
+            $file = $request->bg_image;
+            $extention = $file->getClientOriginalExtension();
+            $fileName = hexdec(uniqid()).'.'.$extention;
+
+            $file->move('frontend/assets/images/pages/home/campus/', $fileName);
+            $update->bg_image = $fileName;
+        }
+        $update->button_text = $request->button_text;
+        $update->button_link = $request->button_link;
+        $update->update();
+
+        return redirect()->route('front-campus.index')->with('success', 'Campus Section Updated Successfully');
+
     }
 
     /**

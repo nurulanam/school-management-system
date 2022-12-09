@@ -728,7 +728,7 @@
         @elseif (Session::has('error'))
             toastr.options.closeButton = true;
             toastr.options.progressBar = true;
-            toastr.error("{{session('danger')}}");
+            toastr.error("{{session('error')}}");
 
         @elseif (Session::has('info'))
             toastr.options.closeButton = true;

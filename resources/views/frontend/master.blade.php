@@ -33,6 +33,30 @@
 
 
     @include('frontend.includes.scripts')
+    <script>
+        @if (Session::has('success'))
+
+            toastr.options.closeButton = true;
+            toastr.options.progressBar = true;
+            toastr.success("{{session('success')}}");
+
+        @elseif (Session::has('error'))
+            toastr.options.closeButton = true;
+            toastr.options.progressBar = true;
+            toastr.error("{{session('error')}}");
+
+        @elseif (Session::has('info'))
+            toastr.options.closeButton = true;
+            toastr.options.progressBar = true;
+            toastr.info("{{session('info')}}");
+        @endif
+    </script>
+    <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button>Logout</button>
+                                    </form>
+                                </li>
 </body>
 
 </html>

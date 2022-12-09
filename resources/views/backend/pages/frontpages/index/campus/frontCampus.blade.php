@@ -30,11 +30,10 @@
                                 <h5 class="card-title mb-0">Campus Section</h5>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('front-campus.store') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('front-campus.store') }}" method="post"
+                                    enctype="multipart/form-data">
                                     @csrf
-                                    <!-- Input with Value -->
                                     <div class="row">
-
                                         <div class="col-md-6 mb-3">
                                             <label for="title" class="form-label">Title <span
                                                     class="text-danger">*</span></label>
@@ -59,9 +58,8 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="buttonText" class="form-label">Button Text<span
                                                     class="text-danger">*</span></label>
-                                            <input name="button_text" type="text" class="form-control"
-                                                id="buttonText" value="{{ old('button_text') }}"
-                                                placeholder="Button Text">
+                                            <input name="button_text" type="text" class="form-control" id="buttonText"
+                                                value="{{ old('button_text') }}" placeholder="Button Text">
                                             @error('button_text')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -70,18 +68,17 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="buttonLink" class="form-label">Button Link<span
                                                     class="text-danger">*</span></label>
-                                            <input name="button_link" type="text" class="form-control"
-                                                id="buttonLink" value="{{ old('button_link') }}"
-                                                placeholder="Button Link">
+                                            <input name="button_link" type="text" class="form-control" id="buttonLink"
+                                                value="{{ old('button_link') }}" placeholder="Button Link">
                                             @error('button_link')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
 
                                         <div class="col-md-6 mb-3">
-                                            <label for="campusDescription" class="form-label">Campust Short Description</label>
-                                            <textarea name="campus_description" class="form-control ckeditor-classic"
-                                                id="campusDescription"
+                                            <label for="campusDescription" class="form-label">Campust Short
+                                                Description</label>
+                                            <textarea name="campus_description" class="form-control ckeditor-classic" id="campusDescription"
                                                 placeholder="Campust Short Description">{{ old('campus_description') }}</textarea>
                                             @error('campus_description')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -124,83 +121,91 @@
                                     <th>#</th>
                                     <th>Background</th>
                                     <th>Title</th>
-                                    <th>Top Desc</th>
-                                    <th>Video Link</th>
-                                    <th>Bottom Desc</th>
+                                    {{-- <th>Campus Desc</th> --}}
                                     <th>Button Text</th>
                                     <th>Button Link</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            {{-- <tbody>
-                             @foreach ($admissions as $key => $admission)
-                            <tr>
-                                <th scope="row">
-                                    <div class="form-check">
-                                        <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="option1">
-                                    </div>
-                                </th>
-                                <td>{{ $key+=1 }}</td>
-                                <td>
-                                    <img src="{{  asset('frontend/assets/images/pages/home/admission').'/'.$admission->bg_image }}" class="img-fluid img-thumbnail " width="80px">
-                                </td>
-                                <td>{{ $admission->title }}</td>
-                                <td>{{ $admission->top_description }}</td>
-                                <td>{{ $admission->video_link }}</td>
-                                <td>{{ $admission->bottom_description }}</td>
-                                <td>{{ $admission->button_text }}</td>
-                                <td>{{ $admission->button_link }}</td>
-                                <td>
-                                    <div class="dropdown d-inline-block">
-                                        <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="ri-more-fill align-middle"></i>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-end">
-                                            <li>
-                                                <a href="{{ route('front-admission.edit', $admission->id) }}" class="dropdown-item edit-item-btn">
-                                                    <i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
-                                                </li>
-                                            <li>
-                                                <a class="dropdown-item remove-item-btn" data-bs-toggle="modal" data-bs-target="#delete{{ $admission->id }}">
-                                                    <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
+                            <tbody>
+                                @foreach ($frontCampuses as $key => $frontCampus)
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="form-check">
+                                                <input class="form-check-input fs-15" type="checkbox" name="checkAll"
+                                                    value="option1">
+                                            </div>
+                                        </th>
+                                        {{-- <td>{{ $frontCampus->id }}</td> --}}
+                                        <td>{{ $key+=1 }}</td>
+                                        <td>
+                                            <img src="{{ asset('frontend/assets/images/pages/home/campus') . '/' . $frontCampus->bg_image }}"
+                                                class="img-fluid img-thumbnail " width="80px">
+                                        </td>
+                                        <td>{{ $frontCampus->title }}</td>
+                                        {{-- <td>{{ $frontCampus->campus_description }}</td> --}}
+                                        <td>{{ $frontCampus->button_text }}</td>
+                                        <td>{{ $frontCampus->button_link }}</td>
+                                        <td>
+                                            <div class="dropdown d-inline-block">
+                                                <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="ri-more-fill align-middle"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                    <li>
+                                                        <a href="{{ route('front-campus.edit', $frontCampus->id) }}"
+                                                            class="dropdown-item edit-item-btn">
+                                                            <i class="ri-pencil-fill align-bottom me-2 text-muted"></i>
+                                                            Edit</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item remove-item-btn" data-bs-toggle="modal"
+                                                            data-bs-target="#delete{{ $frontCampus->id }}">
+                                                            <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
+                                                            Delete
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
 
 
-                             <!-- Delete Modals -->
-                            <div id="delete{{ $banner->id }}" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-danger pb-3">
-                                            <h5 class="modal-title text-light" id="myModalLabel">Confirmation Message</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <h5 class="fs-15">
-                                                Are You Sure To <b class="text-danger">DELETE</b> {{ $banner->banner_title }} ?
-                                            </h5>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                            <form action="{{ route('banner.destroy', $banner->id) }}" method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="btn btn-danger ">Confirm</button>
-                                            </form>
-                                        </div>
+                                    <!-- Delete Modals -->
+                                    <div id="delete{{ $frontCampus->id }}" class="modal fade" tabindex="-1"
+                                        aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-danger pb-3">
+                                                    <h5 class="modal-title text-light" id="myModalLabel">Confirmation
+                                                        Message</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"> </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h5 class="fs-15">
+                                                        Are You Sure To <b class="text-danger">DELETE</b>
+                                                        {{ $frontCampus->title }} ?
+                                                    </h5>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <form action="{{ route('front-campus.destroy', $frontCampus->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="btn btn-danger ">Confirm</button>
+                                                    </form>
+                                                </div>
 
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div><!-- /.modal -->
-
-
-                            @endforeach
-                        </tbody>
-                        </table> --}}
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                    </div><!-- /.modal -->
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

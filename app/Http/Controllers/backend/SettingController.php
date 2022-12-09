@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class SettingController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
