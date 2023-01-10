@@ -80,7 +80,12 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="campus-image">
-                        <img src="{{ asset('frontend/assets/images/pages/home/campus').'/'.$frontCampus->bg_image }}" alt="Image">
+                        @if($frontCampus == null)
+                        <img src="" alt="Image">
+                        @elseif ($frontCampus->bg_image)
+                            <img src="{{ asset('frontend/assets/images/pages/home/campus').'/'.$frontCampus->bg_image }}" alt="Image">
+                        @endif
+
                     </div>
                 </div>
                 <div class="col-lg-6">

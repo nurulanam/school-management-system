@@ -69,8 +69,6 @@ class TeacherController extends Controller
             $register = new User();
             $register->name = $request->name;
             $register->email = $request->email;
-            $register->role = 'teacher';
-            $register->status = 'active';
             $register->password = Hash::make($request->password);
             $register->save();
         }

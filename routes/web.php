@@ -37,7 +37,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
     ##        teacher         ##
     ############################
 
-    Route::middleware(['user-access:admin'|'user-access:teacher'])->group(function(){
+    Route::middleware(['role:admin'])->group(function(){
         // //Dashboard
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         //Student
@@ -49,7 +49,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
     ##        admin         ##
     ##########################
 
-    Route::middleware('user-access:admin')->group(function(){
+    Route::middleware(['role:admin'])->group(function(){
         //Dashboard
         // Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         //School Setup

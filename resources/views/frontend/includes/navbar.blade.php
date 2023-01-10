@@ -7,9 +7,9 @@
             <div class="mobile-responsive-menu align-items-center">
                 <div class="logo">
                     <a href="{{ url('/') }}">
-                        <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}" class="main-logo" lt="logo" style="max-height: 100px;">
+                        {{-- <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}" class="main-logo" lt="logo" style="max-height: 100px;">
                         <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}" class="white-logo"
-                            alt="logo" style="max-height: 100px;">
+                            alt="logo" style="max-height: 100px;"> --}}
                     </a>
                 </div>
             </div>
@@ -19,9 +19,9 @@
         <div class="container-fluid">
             <nav class="navbar navbar-expand-md navbar-light ">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}"
+                    {{-- <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}"
                         class="main-logo img-fluid" alt="logo" style="max-height: 100px;">
-                    <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}" class="white-logo" alt="logo" style="max-height: 100px;">
+                    <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}" class="white-logo" alt="logo" style="max-height: 100px;"> --}}
                 </a>
                 <div class="collapse navbar-collapse mean-menu align-items-center" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto align-items-center">

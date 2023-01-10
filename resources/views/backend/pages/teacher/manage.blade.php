@@ -50,7 +50,7 @@
                                             <th>Teacher Name</th>
                                             <th>Position</th>
                                             <th>Phone</th>
-                                            <th>Status</th>
+                                            {{-- <th>Status</th> --}}
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -71,7 +71,7 @@
                                                 <td>{{ $teacher->name }}</td>
                                                 <td>{{ $teacher->position->position_name }}</td>
                                                 <td>{{ $teacher->phone_number }}</td>
-                                                <td>
+                                                {{-- <td>
                                                         @if ($teacher->user->status == 'inactive')
                                                             <a href="{{ route('teacher.status', $teacher->user->id) }}" class="btn btn-danger btn-sm"> <i
                                                                     class="mdi mdi-arrow-down-thin"></i></a>
@@ -79,7 +79,7 @@
                                                             <a href="{{ route('teacher.status', $teacher->user->id) }}" class="btn btn-primary btn-sm"> <i
                                                                     class="mdi mdi-arrow-up-thin"></i></a>
                                                         @endif
-                                                </td>
+                                                </td> --}}
                                                 <td>
                                                     <div class="dropdown d-inline-block">
                                                         <button class="btn btn-soft-secondary btn-sm dropdown"

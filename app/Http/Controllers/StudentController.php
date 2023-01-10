@@ -68,8 +68,6 @@ class StudentController extends Controller
             $register = new User();
             $register->name = $request->name;
             $register->email = $request->email;
-            $register->role = 'student';
-            $register->status = 'active';
             $register->password = Hash::make($request->password);
             $register->save();
         };

@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('role')->default('user')->comment('admin,teacher,student, user');
-            $table->string('status')->default('inactive')->comment('active,inactive');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
