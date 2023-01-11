@@ -91,7 +91,7 @@
                 <div class="col-lg-6">
                     <div class="campus-content style-2">
                         <div class="campus-title">
-                            <h2>{{ $frontCampus->title }}</h2>
+                            <h2>@if ($frontCampus->title == null)This is Campus Title @elseif ($frontCampus->title){{ $frontCampus->title }}@endif</h2>
                             {!! $frontCampus->campus_description !!}
                         </div>
                         {{-- <div class="counter">

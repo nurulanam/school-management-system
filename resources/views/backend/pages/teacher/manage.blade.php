@@ -69,7 +69,7 @@
                                                         class="img-fluid img-thumbnail" width="60">
                                                 </td>
                                                 <td>{{ $teacher->name }}</td>
-                                                <td>{{ $teacher->position->position_name }}</td>
+                                                <td>{{ $teacher->position }}</td>
                                                 <td>{{ $teacher->phone_number }}</td>
                                                 {{-- <td>
                                                         @if ($teacher->user->status == 'inactive')

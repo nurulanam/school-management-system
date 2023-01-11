@@ -242,14 +242,9 @@
                                 @enderror
                             </div>
                             <div class="col-md-12 mb-3">
-                                <label for="positionId" class="form-label">Current Position<span class="text-danger">*</span></label>
-                                <select name="position_id" id="positionId" class="form-control">
-                                    <option>Select Current Position</option>
-                                    @foreach ($positions as $position)
-                                        <option value="{{ $position->id }}">{{ $position->position_name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('position_id')
+                                <label for="position" class="form-label">Current Position<span class="text-danger">*</span></label>
+                                <input type="text" name="position" id="position" class="form-control" placeholder="Position">
+                                @error('position')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>

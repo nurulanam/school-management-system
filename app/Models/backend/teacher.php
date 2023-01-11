@@ -25,17 +25,9 @@ class Teacher extends Model
         'pin_code',
         'joining_date',
         'leaving_date',
-        'position_id',
+        'position',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo('App\Models\User');
-    }
-    public function position()
-    {
-        return $this->belongsTo('App\Models\backend\Position');
-    }
     public function country()
     {
         return $this->belongsTo('App\Models\backend\Country');

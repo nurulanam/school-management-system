@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class SettingController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +18,9 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $positions = Position::all();
+        // $positions = Position::all();
         $countries = Country::all();
-        return view('backend.pages.setting.index', compact('positions', 'countries'));
+        return view('backend.pages.setting.index', compact('countries'));
 
     }
 

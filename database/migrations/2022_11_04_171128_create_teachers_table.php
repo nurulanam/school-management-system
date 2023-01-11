@@ -30,10 +30,9 @@ return new class extends Migration
             $table->integer('pin_code');
             $table->date('joining_date');
             $table->date('leaving_date')->nullable(true);
-            $table->unsignedBigInteger('position_id');
+            $table->string('position');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('country_id')->references('id')->on('countries');
-            $table->foreign('position_id')->references('id')->on('positions');
             $table->timestamps();
         });
     }

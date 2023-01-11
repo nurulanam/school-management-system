@@ -21,7 +21,7 @@
         </div>
         <!-- end page title -->
         <!-- start position section-->
-        <div class="row">
+        {{-- <div class="row">
             <div class="col">
                 <div class="row">
                     <div class="col-lg-12">
@@ -31,7 +31,6 @@
                                     <h5 class="card-title mb-0">All Position</h5>
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#addPosition">Add</button>
-                                    <!-- Varying modal content -->
 
                                 </div>
 
@@ -130,7 +129,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            {{-- Edit Modal  --}}
+
                                             <div class="modal fade" id="positionEdit{{ $position->id }}" tabindex="-1"
                                                 aria-labelledby="varyingcontentModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -172,7 +171,7 @@
                                             </div>
 
 
-                                            <!-- Delete Modals -->
+
                                             <div id="delete{{ $position->id }}" class="modal fade" tabindex="-1"
                                                 aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                                 <div class="modal-dialog">
@@ -197,9 +196,9 @@
                                                                 <button class="btn btn-danger ">Confirm</button>
                                                             </form>
                                                         </div>
-                                                    </div><!-- /.modal-content -->
-                                                </div><!-- /.modal-dialog -->
-                                            </div><!-- /.modal -->
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -208,8 +207,8 @@
                     </div>
                 </div>
 
-            </div> <!-- end col -->
-        </div>
+            </div>
+        </div> --}}
         <!-- end Position section -->
 
         <!-- start Country section -->

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\backend\Country;
-use App\Models\backend\Position;
 use App\Models\backend\teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
 use File;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class TeacherController extends Controller
 {
@@ -33,8 +33,8 @@ class TeacherController extends Controller
     public function create()
     {
         $countries = Country::all();
-        $positions = Position::all();
-        return view('backend.pages.teacher.create', compact('countries','positions'));
+        // $positions = Position::all();
+        return view('backend.pages.teacher.create', compact('countries'));
     }
 
     /**
@@ -60,7 +60,7 @@ class TeacherController extends Controller
                 'country_id' => 'required',
                 'pin_code' => 'required',
                 'joining_date' => 'required',
-                'position_id' => 'required',
+                'position' => 'required',
                 'password' => 'min:8|required_with:password_confirmation|same:password_confirmation',
                 'password_confirmation' => 'min:8',
             ]
@@ -71,7 +71,13 @@ class TeacherController extends Controller
             $register->email = $request->email;
             $register->password = Hash::make($request->password);
             $register->save();
+
+
         }
+        // dd($newUser);
+        $newUser = User::find($register->id);
+        $newUser->assignRole('teacher');
+        
         $teacher = new teacher();
         if ($request->hasFile('teacher_avater')) {
             $file = $request->teacher_avater;
@@ -99,7 +105,7 @@ class TeacherController extends Controller
         $teacher->pin_code = $request->pin_code;
         $teacher->joining_date = $request->joining_date;
         $teacher->leaving_date = $request->leaving_date;
-        $teacher->position_id = $request->position_id;
+        $teacher->position = $request->position;
         $teacher->save();
 
         return redirect()->route('teacher.index')->with('success', 'Teacher Added Successfully');

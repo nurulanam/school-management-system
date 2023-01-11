@@ -31,13 +31,13 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        if(Auth()->user()->role == 'admin' || Auth()->user()->role == 'teacher'){
+        if(auth()->user()->hasRole('admin|teacher'))
             return redirect()->intended(RouteServiceProvider::HOME);
         }
-        // return redirect()->intended(RouteServiceProvider::HOME);
-        elseif(Auth()->user()->role == 'student'){
+        elseif(auth()->user()->hasRole('student|guardian')){
             return redirect()->intended(RouteServiceProvider::STUDENT);
-        }else{
+        }
+        elseif(auth()->user()->unlessrole("You Don't Have any permission to Access")){
             return redirect()->intended(RouteServiceProvider::NONE);
         }
     }

@@ -16,9 +16,11 @@
                             @if(auth()->guest())
                                 <li><a href="{{ route('login') }}">Login</a></li>
                                 <li><a href="{{ route('register') }}">Register</a></li>
-                            @elseif (auth()->user()->role == 'admin' || auth()->user()->role == 'teacher')
+                            @endif
+                            @hasrole('admin'|'teacher')
                                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            @elseif (auth()->user()->role == 'student')
+                            @endhasrole
+                            @hasrole('student')
                                 <li><a href="{{ url('/student') }}">Student Dashboard</a></li>
                                <li>
                                     <form method="POST" action="{{ route('logout') }}">
@@ -26,7 +28,7 @@
                                         <button>Logout</button>
                                     </form>
                                 </li>
-                            @endif
+                            @endhasrole
                         </ul>
                     </div>
                 </div>
