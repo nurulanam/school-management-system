@@ -51,12 +51,6 @@
             toastr.info("{{session('info')}}");
         @endif
     </script>
-    <li>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <button>Logout</button>
-                                    </form>
-                                </li>
 </body>
 
 </html>

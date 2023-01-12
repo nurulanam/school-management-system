@@ -17,7 +17,7 @@
                                 <li><a href="{{ route('login') }}">Login</a></li>
                                 <li><a href="{{ route('register') }}">Register</a></li>
                             @endif
-                            @hasrole('admin'|'teacher')
+                            @hasrole('admin|teacher')
                                 <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             @endhasrole
                             @hasrole('student')
@@ -25,7 +25,7 @@
                                <li>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                                        <button>Logout</button>
+                                        <button class="btn default-btn">Logout</button>
                                     </form>
                                 </li>
                             @endhasrole
