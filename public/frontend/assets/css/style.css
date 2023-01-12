@@ -5663,7 +5663,8 @@ textarea {
     padding: 50px;
     -webkit-box-shadow: 0 0 20px 3px rgba(0, 0, 0, .05);
     box-shadow: 0 0 20px 3px rgba(0, 0, 0, .05);
-    margin-bottom: 30px
+    margin-bottom: 30px;
+    background-color: #FFE9B1;
 }
 
 .login h3 {
@@ -5717,7 +5718,8 @@ textarea {
     padding: 50px;
     -webkit-box-shadow: 0 0 20px 3px rgba(0, 0, 0, .05);
     box-shadow: 0 0 20px 3px rgba(0, 0, 0, .05);
-    margin-bottom: 30px
+    margin-bottom: 30px;
+    background-color: #FFE9B1;
 }
 
 .register h3 {
