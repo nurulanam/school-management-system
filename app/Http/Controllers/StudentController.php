@@ -64,6 +64,7 @@ class StudentController extends Controller
                 'password_confirmation' => 'min:8',
             ]
         );
+        //Creating New User
         if($request->password != ''){
             $register = new User();
             $register->name = $request->name;
@@ -71,8 +72,14 @@ class StudentController extends Controller
             $register->password = Hash::make($request->password);
             $register->save();
         };
+        // Assigning role as student
+        $newUser = $register->id;
+        $user = User::find($newUser);
+        $user->assignRole('student');
+
+        //Storing Student Info
         $student = new Student();
-        $student->user_id = $register->id;
+        $student->user_id = $newUser;
         if ($request->hasFile('student_avater')) {
             $file = $request->student_avater;
             $ext = $file->getClientOriginalExtension();
@@ -96,6 +103,7 @@ class StudentController extends Controller
         $student->joining_date = $request->joining_date;
         $student->class_id = $request->class_id;
         $student->roll_number = $request->roll_number;
+        $student->created_by = auth()->user()->name;
         $student->save();
         return redirect()->route('student.index')->with('success', 'Student Added Successfully');
     }

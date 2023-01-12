@@ -2,19 +2,52 @@
 @section('content')
     <div class="banner-area">
         <div class="hero-slider2 style2 owl-carousel owl-theme">
-            @foreach ($banners as $banner)
-                <div class="slider-item"
-                    style="background-image:url({{ asset('backend/assets/images/school/banner/' . $banner->banner_image) }})">
+            @if ($banners == null)
+                <div class="slider-item" style="background-image:url('https://via.placeholder.com/300x250')">
                     <div class="container-fluid">
                         <div class="slider-content style2">
-                            <h1>{{ $banner->banner_title }}</h1>
-                            {!! $banner->banner_details !!}
-                            <a href="courses.html" class="default-btn btn">{{ $banner->banner_button_text }} <i
+                            <h1>Please Update Banner Title</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, temporibus!</p>
+                            <a href="#" class="default-btn btn">Button <i
                                     class="flaticon-next"></i></a>
                         </div>
                     </div>
                 </div>
-            @endforeach
+                <div class="slider-item" style="background-image:url('https://via.placeholder.com/300x250')">
+                    <div class="container-fluid">
+                        <div class="slider-content style2">
+                            <h1>Please Update Banner Title</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, temporibus!</p>
+                            <a href="#" class="default-btn btn">Button <i
+                                    class="flaticon-next"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-item" style="background-image:url('https://via.placeholder.com/300x250')">
+                    <div class="container-fluid">
+                        <div class="slider-content style2">
+                            <h1>Please Update Banner Title</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, temporibus!</p>
+                            <a href="#" class="default-btn btn">Button <i
+                                    class="flaticon-next"></i></a>
+                        </div>
+                    </div>
+                </div>
+            @elseif ($banners !== null)
+                @foreach ($banners as $banner)
+                    <div class="slider-item"
+                        style="background-image:url({{ asset('backend/assets/images/school/banner/' . $banner->banner_image) }})">
+                        <div class="container-fluid">
+                            <div class="slider-content style2">
+                                <h1>{{ $banner->banner_title }}</h1>
+                                {!! $banner->banner_details !!}
+                                <a href="courses.html" class="default-btn btn">{{ $banner->banner_button_text }} <i
+                                        class="flaticon-next"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
         </div>
 
     </div>
@@ -77,21 +110,65 @@
 
     <div class="campus-information-area pb-70">
         <div class="container">
+            @if ($frontCampus == null)
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="campus-image">
+                            <img alt="Image" class="img-fluid w-100" src="https://via.placeholder.com/300x250/111D5E/FFFFFF/?text=Please Update 300*250">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="campus-content style-2">
+                            <div class="campus-title">
+                                <h2>This is Campus Title</h2>
+                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis inventore eum modi! Commodi quae recusandae, dolor omnis eius nostrum quaerat., ipsum dolor sit amet consectetur adipisicing elit. Vero a impedit nihil veniam tempora perferendis. Quae deserunt delectus voluptatem vero!</p>
+                            {{-- <div class="counter">
+                                <div class="row">
+                                    <div class="col-lg-4 col-4">
+                                        <div class="counter-card">
+                                            <h1>
+                                                <span class="odometer" data-count="65">00</span>
+                                                <span class="target">+</span>
+                                            </h1>
+                                            <p>Years Of Experience</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-4">
+                                        <div class="counter-card">
+                                            <h1>
+                                                <span class="odometer" data-count="30">00</span>
+                                                <span class="target heading-color">k</span><span class="target">+</span>
+                                            </h1>
+                                            <p>Global Students</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-4">
+                                        <div class="counter-card">
+                                            <h1>
+                                                <span class="odometer" data-count="52">00</span>
+                                                <span class="target">+</span>
+                                            </h1>
+                                            <p>Student Nationalities</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
+
+                            <a href="#" class="default-btn btn">Button <i class="flaticon-next"></i></a>
+                        </div>
+                    </div>
+                </div>
+            @elseif ($frontCampus !== null)
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="campus-image">
-                        @if($frontCampus == null)
-                        <img src="" alt="Image">
-                        @elseif ($frontCampus->bg_image)
-                            <img src="{{ asset('frontend/assets/images/pages/home/campus').'/'.$frontCampus->bg_image }}" alt="Image">
-                        @endif
-
+                        <img src="{{ asset('frontend/assets/images/pages/home/campus').'/'.$frontCampus->bg_image }}" alt="Image">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="campus-content style-2">
                         <div class="campus-title">
-                            <h2>@if ($frontCampus->title == null)This is Campus Title @elseif ($frontCampus->title){{ $frontCampus->title }}@endif</h2>
+                            <h2>{{ $frontCampus->title }}</h2>
                             {!! $frontCampus->campus_description !!}
                         </div>
                         {{-- <div class="counter">
@@ -125,11 +202,13 @@
                                 </div>
                             </div>
                         </div> --}}
-                        <a href="{{ url("/$frontCampus->button_link") }}" class="default-btn btn">{{ $frontCampus->title }}<i
+
+                        <a href="{{ url("/$frontCampus->button_link") }}" class="default-btn btn">{{ $frontCampus->button_text }}<i
                                 class="flaticon-next"></i></a>
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 
@@ -459,6 +538,26 @@
 
     <div class="admisssion-area bg-f4f6f9 ptb-100">
         <div class="container">
+            @if ($frontAdmission == null)
+            <div class="admission-content">
+                <div class="section-title">
+                    <h2>This is Admission Title</h2>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae illum minus ab facere repellendus iste? Sed blanditiis temporibus quam dignissimos?</p>
+                </div>
+                <div class="admission-image">
+                    <img src="https://via.placeholder.com/300x150/111D5E/FFFFFF/?text=Please Update 300*150" alt="Image" class="img-fluid w-100" >
+                    <div class="icon">
+                        <a class="popup-youtube play-btn" href="#"><i
+                                class="ri-play-fill"></i></a>
+                    </div>
+                </div>
+                <div class="query text-center">
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores, ab?</p>
+                    <a href="#" class="default-btn btn">Button<i class="flaticon-next"></i></a>
+                </div>
+            </div>
+
+            @elseif ($frontAdmission !== null)
             <div class="admission-content">
                 <div class="section-title">
                     <h2>{{ $frontAdmission->title }}</h2>
@@ -476,6 +575,8 @@
                     <a href="{{ url("/$frontAdmission->button_link") }}" class="default-btn btn">{{ $frontAdmission->button_text }}<i class="flaticon-next"></i></a>
                 </div>
             </div>
+            @endif
+
         </div>
     </div>
 

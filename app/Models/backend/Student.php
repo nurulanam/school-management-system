@@ -28,8 +28,4 @@ class Student extends Model
     {
         return $this->belongsTo('App\Models\backend\Classes', 'class_id');
     }
-    public function user()
-    {
-        return $this->belongsTo('App\Models\User');
-    }
 }

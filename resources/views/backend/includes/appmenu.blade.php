@@ -42,7 +42,7 @@
             </div>
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
-                @hasrole('admin')
+                @hasrole('admin|teacher')
                     {{-- Start Dashboard --}}
                     <li class="nav-item">
                         <a href="{{ route('dashboard') }}" class="nav-link" data-key="t-horizontal">
@@ -50,7 +50,8 @@
                         </a>
                     </li>
                     {{-- End Dashboard --}}
-
+                @endhasrole
+                @hasrole('admin')
                 {{-- Start School setup  --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarSchoolSetup" data-bs-toggle="collapse" role="button"
@@ -110,9 +111,8 @@
                         </ul>
                     </div>
                     {{-- End Pages setup  --}}
-                    @endhasrole
-                    @hasrole('admin'|'teacher')
-
+                @endhasrole
+                @hasrole('admin|teacher')
                     {{-- Start Student --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarStudent" data-bs-toggle="collapse" role="button"
@@ -154,7 +154,7 @@
                 </li>
                 {{-- End Teacher Menu  --}}
                 @endhasrole
-
+                @hasrole('admin')
                 {{-- Start Classes Menu --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarClasses" data-bs-toggle="collapse" role="button"
@@ -186,6 +186,7 @@
                     </a>
                 </li>
                 {{-- End Setting Menu  --}}
+                @endhasrole
             </ul>
         </div>
         <!-- Sidebar -->

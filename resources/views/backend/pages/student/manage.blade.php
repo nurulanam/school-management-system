@@ -73,11 +73,11 @@
                                                 <td>{{ $student->roll_number }}</td>
                                                 <td>{{ $student->phone_number }}</td>
                                                 <td>
-                                                        @if ($student->user->status == 'inactive')
-                                                            <a href="{{ route('student.status', $student->user->id) }}" class="btn btn-danger btn-sm"> <i
+                                                        @if ($student->status == 'inactive')
+                                                            <a href="{{ route('student.status', $student->id) }}" class="btn btn-danger btn-sm"> <i
                                                                     class="mdi mdi-arrow-down-thin"></i></a>
-                                                        @elseif ($student->user->status == 'active')
-                                                            <a href="{{ route('student.status', $student->user->id) }}" class="btn btn-primary btn-sm"> <i
+                                                        @elseif ($student->status == 'active')
+                                                            <a href="{{ route('student.status', $student->id) }}" class="btn btn-primary btn-sm"> <i
                                                                     class="mdi mdi-arrow-up-thin"></i></a>
                                                         @endif
                                                 </td>

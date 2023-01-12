@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        if(auth()->user()->hasRole('admin|teacher'))
+        if(auth()->user()->hasRole('admin|teacher')){
             return redirect()->intended(RouteServiceProvider::HOME);
         }
         elseif(auth()->user()->hasRole('student|guardian')){

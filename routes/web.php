@@ -4,11 +4,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FrontCampusController;
 use App\Http\Controllers\frontend\AdmissionController;
 use App\Http\Controllers\frontend\FrontendController;
+use App\Http\Controllers\SchoolSetupController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TeacherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +40,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
     ##        teacher         ##
     ############################
 
-    Route::middleware(['role:admin'])->group(function(){
+    Route::middleware(['role:admin|teacher'])->group(function(){
         // //Dashboard
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         //Student
@@ -53,17 +56,17 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
         //Dashboard
         // Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         //School Setup
-        Route::resource('/school-setup', 'App\Http\Controllers\SchoolSetupController');
+        Route::resource('/school-setup', SchoolSetupController::class);
         // Front Pages //
             //Banner Setup
-            Route::resource('/banner', 'App\Http\Controllers\BannerController');
+            Route::resource('/banner', BannerController::class);
             //Campus Setup
             Route::resource('/front-campus', FrontCampusController::class);
             //Admission Setup
             Route::resource('/front-admission', AdmissionController::class);
             //Teacher
-        Route::resource('/teacher', 'App\Http\Controllers\TeacherController');
-        Route::get('/teacher/{id}/status', ['as' => 'teacher.status', 'uses' => 'App\Http\Controllers\TeacherController@status']);
+        Route::resource('/teacher', TeacherController::class);
+        // Route::get('/teacher/{id}/status', [TeacherController::class, 'status'])->name('teacher.status');
 
         //Student
         // Route::resource('/student', StudentController::class);

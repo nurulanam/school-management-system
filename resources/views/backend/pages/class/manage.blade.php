@@ -72,7 +72,7 @@
                                                             @enderror
                                                         </div>
 
-                                                        <div class="col-md-6 mb-3">
+                                                        {{-- <div class="col-md-6 mb-3">
                                                             <label for="ClassTeacher" class="form-label">Class Teacher <span
                                                                     class="text-danger">*</span></label>
                                                             <select name="class_teacher_id" id="ClassTeacher"
@@ -87,7 +87,7 @@
                                                             @error('class_teacher_id')
                                                                 <span class="text-danger">{{ $message }}</span>
                                                             @enderror
-                                                        </div>
+                                                        </div> --}}
                                                         <div class="col-md-6 mb-3">
                                                             <label for="ClassStart" class="form-label">Class Starting
                                                                 on<span class="text-danger">*</span></label>
@@ -141,7 +141,7 @@
                                             <th>#</th>
                                             <th>class Name</th>
                                             <th>class No</th>
-                                            <th>Teacher Name</th>
+                                            {{-- <th>Teacher Name</th> --}}
                                             <th>Start Date</th>
                                             <th>End Date</th>
                                             <th>Status</th>
@@ -160,7 +160,7 @@
                                                 <td>{{ $key += 1 }}</td>
                                                 <td>{{ $class->class_name }}</td>
                                                 <td>{{ $class->class_number }}</td>
-                                                <td>{{ $class->teacherName->name }}</td>
+                                                {{-- <td>{{ $class->teacherName->name }}</td> --}}
                                                 {{-- <td>{{  }}</td> --}}
                                                 <td>{{ $class->class_start }}</td>
                                                 <td>{{ $class->class_end }}</td>

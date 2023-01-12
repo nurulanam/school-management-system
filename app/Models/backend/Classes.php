@@ -11,16 +11,12 @@ class Classes extends Model
     protected $fillable = [
         'class_name',
         'class_number',
-        'class_teacher_id',
         'class_start',
         'class_end',
         'status',
     ];
 
-    public function teacherName()
-    {
-        return $this->belongsTo('App\Models\backend\Teacher', 'class_teacher_id');
-    }
+    
 
 }
 

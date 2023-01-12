@@ -48,7 +48,7 @@ class ClassesController extends Controller
         $class = new Classes();
         $class->class_name = $request->class_name;
         $class->class_number = $request->class_number;
-        $class->class_teacher_id = $request->class_teacher_id;
+        // $class->class_teacher_id = $request->class_teacher_id;
         $class->class_start = $request->class_start;
         $class->class_end = $request->class_end;
         $class->save();
@@ -111,7 +111,7 @@ class ClassesController extends Controller
         $classes = Classes::find($id);
         $classes->class_name = $request->class_name;
         $classes->class_number = $request->class_number;
-        $classes->class_teacher_id = $request->class_teacher_id;
+        // $classes->class_teacher_id = $request->class_teacher_id;
         $classes->class_start = $request->class_start;
         if($request->class_end != ''){
              $classes->class_end = $request->class_end;

@@ -52,7 +52,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-6 mb-3">
+                                        {{-- <div class="col-md-6 mb-3">
                                             <label for="ClassTeacher" class="form-label">Class Teacher <span
                                                     class="text-danger">*</span></label>
                                             <select name="class_teacher_id" id="ClassTeacher" class="form-control">
@@ -65,7 +65,7 @@
                                             @error('class_teacher_id')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
-                                        </div>
+                                        </div> --}}
                                         <div class="col-md-6 mb-3">
                                             <label for="ClassStart" class="form-label">Class Starting on<span
                                                     class="text-danger">*</span></label>
