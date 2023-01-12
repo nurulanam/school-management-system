@@ -49,7 +49,7 @@
                         @enderror
                     </div>
                     <div class="d-flex justify-content-between align-items-middle">
-                        <button type="submit" class="default-btn btn active">Register</button>
+                        <button type="submit" class="default-btn-1 btn">Register</button>
                     <a href="{{ route('login') }}">Already registered?</a>
                     </div>
 

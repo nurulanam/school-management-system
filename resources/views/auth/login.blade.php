@@ -39,7 +39,7 @@
                         </label>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <button type="submit" class="default-btn btn active">Login</button>
+                        <button type="submit" class="default-btn-1 btn">Login</button>
                         <a href="{{ route('register') }}">Not Registered?</a>
                         @if (Route::has('password.request'))
                             <a href="{{ route('password.request') }}">Lost your password?</a>
