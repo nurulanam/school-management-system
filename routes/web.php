@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\backend\SettingController;
+use App\Http\Controllers\backend\TagController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FrontCampusController;
 use App\Http\Controllers\frontend\AdmissionController;
@@ -82,7 +84,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
         Route::get('/student/{id}/delete', ['as' => 'student.delete', 'uses' => 'App\Http\Controllers\StudentController@destroy']);
 
         //Classes
-        Route::resource('/classes', 'App\Http\Controllers\ClassesController');
+        Route::resource('/classes', ClassesController::class);
         Route::get('/classes/{id}/status', [ClassesController::class, 'status'])->name('classes.status');
         Route::put('/classes/{id}/update', ['as' => 'classes.updates', 'uses' => 'App\Http\Controllers\ClassesController@update']);
         Route::delete('/classes/{id}/delete', ['as' => 'classes.deletes', 'uses' => 'App\Http\Controllers\ClassesController@destroy']);
@@ -94,10 +96,13 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
         Route::delete('/subject/{id}/delete', ['as' => 'subject.deletes', 'uses' => 'App\Http\Controllers\SubjectController@destroy']);
 
         //Setting
-        Route::resource('/setting', 'App\Http\Controllers\backend\SettingController');
+        Route::resource('/setting', SettingController::class);
         Route::post('/setting/{dbtable}', ['as' => 'setting.stores', 'uses' => 'App\Http\Controllers\backend\SettingController@store']);
         Route::post('/setting/{id}/{dbtable}/update', ['as' => 'setting.updates', 'uses' => 'App\Http\Controllers\backend\SettingController@update']);
         Route::post('/setting/{id}/{dbtable}/destroy', ['as' => 'setting.destroing', 'uses' => 'App\Http\Controllers\backend\SettingController@destroy']);
+
+        //Tags
+        Route::resource('/tags', TagController::class);
 
     });
 

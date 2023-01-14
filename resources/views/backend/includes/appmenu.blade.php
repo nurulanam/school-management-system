@@ -174,6 +174,26 @@
                 {{-- End Teacher Menu  --}}
                 @endhasrole
                 @hasrole('admin')
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="#sidebarPost" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarPost">
+                            <i class="mdi mdi-google-classroom"></i> <span data-key="t-layouts">Manage Post</span>
+                        </a>
+                        <div class="collapse menu-dropdown" id="sidebarPost">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{ route('tags.index') }}" class="nav-link"
+                                        data-key="t-horizontal">Tags</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="" class="nav-link"
+                                        data-key="t-horizontal">Posts</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endhasrole
+                @hasrole('admin')
                 {{-- Start Classes Menu --}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarClasses" data-bs-toggle="collapse" role="button"
