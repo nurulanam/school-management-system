@@ -2,7 +2,6 @@
 
 namespace App\Models\backend;
 
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -31,5 +30,9 @@ class Teacher extends Model
     public function country()
     {
         return $this->belongsTo('App\Models\backend\Country');
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
     }
 }

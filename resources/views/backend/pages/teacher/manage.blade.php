@@ -97,6 +97,13 @@
                                                                     Edit</button>
                                                             </li>
                                                             <li>
+                                                                <button type="button" class="dropdown-item edit-item-btn"
+                                                                    data-bs-toggle="modal" data-bs-target="#myModal">
+                                                                    <i
+                                                                        class="ri-guide-fill align-bottom me-2 text-muted"></i>
+                                                                    Roles</button>
+                                                            </li>
+                                                            <li>
                                                                 <a class="dropdown-item remove-item-btn"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#delete{{ $teacher->id }}">
@@ -110,6 +117,55 @@
                                                 </td>
                                             </tr>
 
+
+                                            <!-- Role Modal -->
+                                            <div id="myModal" class="modal fade" tabindex="-1"
+                                                aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="myModalLabel">User Roles</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"> </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            @if ($teacher->user->roles)
+                                                                @foreach ($teacher->user->roles as $user_role)
+                                                                    <form
+                                                                        action="{{ route('teacher.roles.revoke', [$teacher->user->id , $user_role->id]) }}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        @method('delete')
+                                                                        <button
+                                                                            class="btn btn-danger m-1 btn-sm">{{ $user_role->name }}</button>
+                                                                    </form>
+                                                                @endforeach
+                                                            @endif
+                                                            <h5 class="mt-3">Add Role</h5>
+                                                            <form action="{{ route('teacher.roles', $teacher->user->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <select name="role" class="form-control">
+                                                                    <option>------Select Role-------</option>
+                                                                    @foreach ($roles as $role)
+                                                                        <option value="{{ $role->name }}">
+                                                                            {{ $role->name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('role')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                                <button class="btn btn-primary mt-3">Add role</button>
+                                                            </form>
+                                                        </div>
+                                                        </div>
+
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+
+
                                             <!-- Delete Modals -->
                                             <div id="delete{{ $teacher->id }}" class="modal fade" tabindex="-1"
                                                 aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -118,8 +174,8 @@
                                                         <div class="modal-header bg-danger pb-3">
                                                             <h5 class="modal-title text-light" id="myModalLabel">
                                                                 Confirmation Message</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"> </button>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"> </button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <h5 class="fs-15">

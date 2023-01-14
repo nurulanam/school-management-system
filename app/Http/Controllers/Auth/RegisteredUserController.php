@@ -49,6 +49,14 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        if(auth()->user()->hasRole('admin|teacher')){
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+        elseif(auth()->user()->hasRole('student|guardian')){
+            return redirect()->intended(RouteServiceProvider::STUDENT);
+        }
+        elseif(auth()->user()->unlessrole("You Don't Have any permission to Access")){
+            return redirect()->intended(RouteServiceProvider::NONE);
+        }
     }
 }

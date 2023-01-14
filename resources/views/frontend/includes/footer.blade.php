@@ -7,11 +7,11 @@
                         $logo_info = App\Http\Controllers\frontend\FrontendController::avater();
                     @endphp
                     <a href="{{ url('/') }}">
-                        @if ($logo_info == null)
-                            <img src=""
-                            alt="Image" class="img-fluid" alt="logo" style="max-height: 100px;">
-                        @elseif ($logo_info !== null)
-                            <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}"
+                        @if (!empty($logo_info))
+                        <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}"
+                        alt="Image" class="img-fluid" alt="logo" style="max-height: 100px;">
+                        @else
+                            <img src="https://via.placeholder.com/100x100/3B3486/FFFFFF/?text=LOGO"
                             alt="Image" class="img-fluid" alt="logo" style="max-height: 100px;">
                         @endif
                         </a>

@@ -21,7 +21,8 @@ class TeacherController extends Controller
     public function index()
     {
         $teachers = teacher::all();
-        return view('backend.pages.teacher.manage', compact('teachers'));
+        $roles =  Role::all();
+        return view('backend.pages.teacher.manage', compact('teachers', 'roles'));
 
     }
 
@@ -77,7 +78,7 @@ class TeacherController extends Controller
         // dd($newUser);
         $newUser = User::find($register->id);
         $newUser->assignRole('teacher');
-        
+
         $teacher = new teacher();
         if ($request->hasFile('teacher_avater')) {
             $file = $request->teacher_avater;
@@ -144,6 +145,21 @@ class TeacherController extends Controller
         return redirect()->back()->with('info','Status Updated Successfully');
 
 
+    }
+    public function addRole(Request $request, User $user){
+        if($user->hasRole($request->role)){
+            return back()->with('message', 'Role exists');
+        }
+        $user->assignRole($request->role);
+        return back()->with('message', 'Role added');
+    }
+
+    public function revokeRole(User $user, Role $role)
+    {
+        if($user->hasRole($role)){
+            $user->removeRole($role);
+            return back()->with('message', 'Role Removed');
+        }
     }
 
     public function edit(teacher $teacher)

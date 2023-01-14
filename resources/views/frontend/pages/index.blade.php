@@ -534,7 +534,7 @@
                             iste? Sed blanditiis temporibus quam dignissimos?</p>
                     </div>
                     <div class="admission-image">
-                        <img src="https://via.placeholder.com/300x150/7743DB/FFFFFF/?text=Please Update 300*150"
+                        <img src="https://via.placeholder.com/700x300/7743DB/FFFFFF/?text=Please Update 700*300"
                             alt="Image" class="img-fluid w-100">
                         <div class="icon">
                             <a class="popup-youtube play-btn" href="#"><i class="ri-play-fill"></i></a>

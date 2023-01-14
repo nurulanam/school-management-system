@@ -1,33 +1,52 @@
 <div class="app-menu navbar-menu">
     <!-- LOGO -->
     <div class="navbar-brand-box">
-        {{-- @php
+        @php
             $logo_info = App\Http\Controllers\backend\DashboardController::avater();
-        @endphp --}}
+        @endphp
         <!-- Dark Logo-->
         <a href="{{ route('frontend.index') }}" class="logo logo-dark">
-            <span class="logo-sm">
-                {{-- <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}"
-                    alt="" height="40"> --}}
-            </span>
-            <span class="logo-lg">
-                {{-- <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}"
-                    alt="" height="100"> --}}
-            </span>
+            @if (!empty($logo_info))
+                <span class="logo-sm">
+                    <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}"
+                        alt="" height="40">
+                </span>
+                <span class="logo-lg">
+                    <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}"
+                        alt="" height="100">
+                </span>
+             @else
+                <span class="logo-sm">
+                    <img src="https://via.placeholder.com/100x100/3B3486/FFFFFF/?text=LOGO"
+                        alt="" height="40">
+                </span>
+                <span class="logo-lg">
+                    <img src="https://via.placeholder.com/100x100/3B3486/FFFFFF/?text=LOGO"
+                        alt="" height="100">
+                </span>
+             @endif
         </a>
         <!-- Light Logo-->
         <a href="{{ route('frontend.index') }}" class="logo logo-light">
-            <span class="logo-sm">
-                {{-- <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}"
-                    alt="" height="40"> --}}
-            </span>
-            <span class="logo-lg">
-                {{-- <img src="{{ asset('backend') }}/assets/images/logo-light.png" alt=""
-                    height="17"> --}}
-
-                {{-- <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}"
-                    alt="" height="100"> --}}
-            </span>
+            @if (!empty($logo_info))
+                <span class="logo-sm">
+                    <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}"
+                        alt="" height="40">
+                </span>
+                <span class="logo-lg">
+                    <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}"
+                        alt="" height="100">
+                </span>
+            @else
+                <span class="logo-sm">
+                    <img src="https://via.placeholder.com/100x100/3B3486/FFFFFF/?text=LOGO"
+                        alt="" height="40">
+                </span>
+                <span class="logo-lg">
+                    <img src="https://via.placeholder.com/100x100/3B3486/FFFFFF/?text=LOGO"
+                        alt="" height="100">
+                </span>
+            @endif
         </a>
         <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
             id="vertical-hover">

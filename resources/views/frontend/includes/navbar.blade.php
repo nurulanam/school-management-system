@@ -7,9 +7,17 @@
             <div class="mobile-responsive-menu align-items-center">
                 <div class="logo">
                     <a href="{{ url('/') }}">
-                        {{-- <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}" class="main-logo" lt="logo" style="max-height: 100px;">
-                        <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}" class="white-logo"
-                            alt="logo" style="max-height: 100px;"> --}}
+                        @if (!empty($logo_info))
+                            {{-- <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}" class="main-logo" lt="logo" style="max-height: 100px;">
+                                    <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}" class="white-logo"
+                                        alt="logo" style="max-height: 100px;"> --}}
+                        @else
+                            <img src="https://via.placeholder.com/100x100/3B3486/FFFFFF/?text=LOGO" class="main-logo"
+                                lt="logo" style="max-height: 100px;">
+                            <img src="https://via.placeholder.com/100x100/3B3486/FFFFFF/?text=LOGO" class="white-logo"
+                                alt="logo" style="max-height: 100px;">
+                        @endif
+
                     </a>
                 </div>
             </div>
@@ -19,9 +27,15 @@
         <div class="container-fluid">
             <nav class="navbar navbar-expand-md navbar-light ">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{-- <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}"
+                    @if (!empty($logo_info))
+                        {{-- <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}"
                         class="main-logo img-fluid" alt="logo" style="max-height: 100px;">
-                    <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}" class="white-logo" alt="logo" style="max-height: 100px;"> --}}
+                        <img src="{{ asset('backend') }}/assets/images/school/avater/{{ $logo_info->school_avater }}" class="white-logo" alt="logo" style="max-height: 100px;"> --}}
+                    @else
+                        <img src="https://via.placeholder.com/100x100/3B3486/FFFFFF/?text=LOGO"
+                        class="main-logo img-fluid" alt="logo" style="max-height: 100px;">
+                    <img src="https://via.placeholder.com/100x100/3B3486/FFFFFF/?text=LOGO" class="white-logo" alt="logo" style="max-height: 100px;">
+                    @endif
                 </a>
                 <div class="collapse navbar-collapse mean-menu align-items-center" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto align-items-center">
@@ -30,7 +44,7 @@
                                 Home
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="#" class="nav-link dropdown-toggle">
                                 Academics
                             </a>
@@ -45,10 +59,10 @@
                                     <a href="#" class="nav-link">Commerce</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="{{ url('/faq') }}" class="nav-linkactive">
-                                FAQ
+                                Academics
                             </a>
                         </li>
                         <li class="nav-item">

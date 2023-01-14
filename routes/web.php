@@ -28,6 +28,12 @@ use App\Http\Controllers\TeacherController;
 Route::prefix('/')->name('frontend.')->group(function(){
     Route::get('/', [FrontendController::class, 'index'])->name('index');
 });
+Route::prefix('/student')->middleware('auth')->group(function()
+{
+    Route::prefix('/')->middleware(['role:student|guardian'])->group(function(){
+        Route::get('/');
+    });
+});
 
 // $user_role = Auth()->user()->role;
 
@@ -67,6 +73,8 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
             //Teacher
         Route::resource('/teacher', TeacherController::class);
         // Route::get('/teacher/{id}/status', [TeacherController::class, 'status'])->name('teacher.status');
+        Route::post('/teacher/{user}/roles', [TeacherController::class, 'addRole'])->name('teacher.roles');
+        Route::delete('/teacher/{user}/roles/{role}', [TeacherController::class, 'revokeRole'])->name('teacher.roles.revoke');
 
         //Student
         // Route::resource('/student', StudentController::class);
