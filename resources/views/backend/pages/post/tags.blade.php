@@ -93,7 +93,7 @@
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="editTagLabel">Add Tag</h5>
+                                                                    <h5 class="modal-title" id="editTagLabel">Edit Tag</h5>
                                                                     <button type="button" class="btn-close"
                                                                         data-bs-dismiss="modal" aria-label="Close">
                                                                     </button>
@@ -113,6 +113,31 @@
                                                                     <div class="modal-footer">
                                                                         <button class="btn btn-primary mt-3">Update
                                                                             Tag</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Edit Tag Modal -->
+                                                    <div id="delete{{ $tag->id }}" class="modal fade" tabindex="-1"
+                                                        aria-labelledby="deleteLabel" aria-hidden="true"
+                                                        style="display: none;">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="deleteLabel">Delete Tag</h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal" aria-label="Close">
+                                                                    </button>
+                                                                </div>
+                                                                <form action="{{ route('tags.destroy', $tag->id) }}" method="POST">
+                                                                    @csrf
+                                                                    @method('delete')
+                                                                    <div class="modal-body">
+                                                                        <p class="text-danger">Are You Sure to Delete {{ $tag->tag_name }}</p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button class="btn btn-danger mt-3">Delete</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
