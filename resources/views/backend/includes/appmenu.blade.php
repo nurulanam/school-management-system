@@ -186,7 +186,7 @@
                                         data-key="t-horizontal">Tags</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link"
+                                    <a href="{{ route('posts.index') }}" class="nav-link"
                                         data-key="t-horizontal">Posts</a>
                                 </li>
                             </ul>

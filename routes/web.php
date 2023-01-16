@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\SettingController;
 use App\Http\Controllers\backend\TagController;
 use App\Http\Controllers\BannerController;
@@ -103,6 +104,9 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
 
         //Tags
         Route::resource('/tags', TagController::class);
+
+        //Post
+        Route::resource('/posts', PostController::class);
 
     });
 

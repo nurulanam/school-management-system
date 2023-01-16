@@ -717,7 +717,7 @@
 
     @include('backend.includes.scripts')
 
-
+    @yield('extraJS')
     <script>
         @if (Session::has('success'))
 
