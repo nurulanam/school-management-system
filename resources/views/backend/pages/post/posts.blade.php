@@ -46,12 +46,15 @@
                                                 </div>
                                             </th>
                                             <th>#</th>
-                                            <th>Tag Name</th>
+                                            <th>Banner</th>
+                                            <th>Post title</th>
+                                            <th>Created By</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @foreach ($tags as $key => $tag)
+                                        @foreach ($posts as $key => $post)
                                             <tr>
                                                 <th scope="row">
                                                     <div class="form-check">
@@ -60,7 +63,16 @@
                                                     </div>
                                                 </th>
                                                 <td>{{ $key += 1 }}</td>
-                                                <td>{{ $tag->tag_name }}</td>
+                                                <td><img src="{{ asset('backend/assets/images/school/post/'.$post->post_banner) }}" class="img-fluid img-thumbnail" width="80px"></td>
+                                                <td>{{ $post->post_name }}</td>
+                                                <td>{{ $post->created_by }}</td>
+                                                <td>
+                                                    @if ($post->status == 'publish')
+                                                        <button class="btn btn-sm btn-primary"><i class="mdi mdi-archive-arrow-up" title="{{ $post->status }}"></i></button>
+                                                    @elseif ($post->status == 'publish')
+                                                        <button class="btn btn-sm btn-danger"><i class="mdi mdi-archive-arrow-down" title="{{ $post->status }}"></i></button>
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <div class="dropdown d-inline-block">
                                                         <button class="btn btn-soft-secondary btn-sm dropdown"
@@ -70,7 +82,7 @@
                                                         <ul class="dropdown-menu dropdown-menu-end">
                                                             <li>
                                                                 <button type="button" class="dropdown-item edit-item-btn" data-bs-toggle="modal"
-                                                                data-bs-target="#editTag{{ $tag->id }}">
+                                                                data-bs-target="#editTag{{ $post->id }}">
                                                                     <i
                                                                         class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                                     Edit</button>
@@ -78,7 +90,7 @@
                                                             <li>
                                                                 <a class="dropdown-item remove-item-btn"
                                                                     data-bs-toggle="modal"
-                                                                    data-bs-target="#delete{{ $tag->id }}">
+                                                                    data-bs-target="#delete{{ $post->id }}">
                                                                     <i
                                                                         class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
                                                                     Delete
@@ -87,7 +99,7 @@
                                                         </ul>
                                                     </div>
                                                     <!-- Edit Tag Modal -->
-                                                    <div id="editTag{{ $tag->id }}" class="modal fade" tabindex="-1"
+                                                    {{-- <div id="editTag{{ $tag->id }}" class="modal fade" tabindex="-1"
                                                         aria-labelledby="editTagLabel" aria-hidden="true"
                                                         style="display: none;">
                                                         <div class="modal-dialog">
@@ -117,9 +129,9 @@
                                                                 </form>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                     <!-- Edit Tag Modal -->
-                                                    <div id="delete{{ $tag->id }}" class="modal fade" tabindex="-1"
+                                                    {{-- <div id="delete{{ $tag->id }}" class="modal fade" tabindex="-1"
                                                         aria-labelledby="deleteLabel" aria-hidden="true"
                                                         style="display: none;">
                                                         <div class="modal-dialog">
@@ -142,10 +154,10 @@
                                                                 </form>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                 </td>
                                             </tr>
-                                        @endforeach --}}
+                                        @endforeach
 
                                     </tbody>
                                 </table>
@@ -154,10 +166,7 @@
                     </div>
 
                 </div>
-                post_name
-                post_description
-                post_banner
-                created_by
+
                 <!-- Add Tag Modal -->
                 <div id="addPost" class="modal fade" tabindex="-1" aria-labelledby="addPostLabel" aria-hidden="true"
                     style="display: none;">
@@ -171,38 +180,85 @@
                             <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-body">
-                                    <div class="form-group mb-3">
-                                        <label for="post_banner" class="form-label">Post Banner</label>
-                                        <input type="file" name="post_banner" id="post_banner"
-                                            class="form-control" placeholder="Post Banner">
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="post_name" class="form-label">Post Title</label>
-                                        <input type="text" name="post_name" id="post_name" class="form-control"
-                                            placeholder="Post Name">
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="post_description" class="form-label">Post Description</label>
-                                        <input type="text" name="post_description" id="post_description"
-                                            class="form-control ckeditor-classic" placeholder="Post Description">
-                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group mb-3">
+                                                <label for="post_banner" class="form-label">Post Banner</label>
+                                                <input type="file" name="post_banner" id="post_banner"
+                                                    class="form-control" placeholder="Post Banner" onchange="loadPreview(this);">
+                                                @error('post_banner')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="post_name" class="form-label">Post Title</label>
+                                                <input type="text" name="post_name" id="post_name" value="{{ old('post_name') }}" class="form-control"
+                                                    placeholder="Post Name">
+                                                @error('post_name')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="post_description" class="form-label">Post Description</label>
+                                                <textarea name="post_description" id="post_description"
+                                                    class="form-control ckeditor-classic" placeholder="Post Description"></textarea>
+                                                @error('post_description')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
 
-                                    <div class="form-group mb-3">
-                                        <label for="" class="form-label">Select Tags</label>
-                                        {{-- <select name="tag_id[]" class="form-control" multiple="multiple"> --}}
-{{--
-                                        </select> --}}
-                                        <select class="js-example-basic-multiple form-control" name="tag_id[]" multiple="multiple" data-bs-spy="scroll">
-                                            <optgroup label="Select Tags">
-                                                @foreach ($tags as $tag)
-                                                    <option value="{{ $tag->id }}">{{ $tag->tag_name }}</option>
-                                                @endforeach
-                                            </optgroup>
-                                        </select>
+                                            <div class="form-group mb-3">
+                                                <label for="" class="form-label">Select Tags</label>
+                                                <select class="js-example-basic-multiple form-control" name="tag_id[]"
+                                                    multiple="multiple" data-bs-spy="scroll">
+                                                    <optgroup label="Select Tags">
+                                                        @foreach ($tags as $tag)
+                                                            <option value="{{ $tag->id }}" @if (old('tag_id') == $tag->id) {{ selected }} @endif>{{ $tag->tag_name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </optgroup>
+                                                </select>
+                                                @error('tag_id')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group mb-3">
+                                                <label for="" class="form-label">Status</label>
+                                                <select class="form-control" name="status">
+                                                    <option value="publish" selected>Publish</option>
+                                                    <option value="draft">Draft</option>
+                                                </select>
+                                                @error('status')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <img id="preview_img" src="https://via.placeholder.com/300x200/3B3486/FFFFFF/?text=Post Banner"
+                                                    alt="" class="img-fluid img-thumbnail w-100">
+                                                <script>
+                                                    $(document).ready(() => {
+                                                        $('#post_banner').change(function() {
+                                                            const file = this.files[0];
+                                                            console.log(file);
+                                                            if (file) {
+                                                                let reader = new FileReader();
+                                                                reader.onload = function(event) {
+                                                                    console.log(event.target.result);
+                                                                    $('#preview_img').attr('src', event.target.result);
+                                                                }
+                                                                reader.readAsDataURL(file);
+                                                            }
+                                                        });
+                                                    });
+                                                </script>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-primary mt-3">Publish Post</button>
+                                    <button class="btn btn-primary mt-3">Save</button>
                                 </div>
                             </form>
                         </div>
@@ -215,8 +271,9 @@
     </div>
 @endsection
 @section('extraJS')
-<!--select2 cdn-->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!--select2 cdn-->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-<script src="{{ asset('backend') }}/assets/js/pages/select2.init.js"></script
-@endsection
+    <script src="{{ asset('backend') }}/assets/js/pages/select2.init.js">
+        < /script
+    @endsection

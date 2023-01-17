@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('post_name');
-            $table->string('post_description');
+            $table->longText('post_description');
             $table->string('post_banner');
             $table->string('created_by');
             $table->string('status')->default('publish')->comment('draft, publish');
