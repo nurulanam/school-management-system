@@ -107,6 +107,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'verified'])->group(function(){
 
         //Post
         Route::resource('/posts', PostController::class);
+        Route::get('/posts/{id}/status', [PostController::class, 'status'])->name('posts.status');
 
     });
 

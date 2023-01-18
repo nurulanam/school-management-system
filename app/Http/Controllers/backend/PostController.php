@@ -68,6 +68,20 @@ class PostController extends Controller
         return redirect()->back()->with('success', 'Post Saved With Out Tags');
     }
 
+    public function status($id)
+    {
+        $post = post::find($id);
+        if($post->status == 'publish'){
+            $post->status = 'draft';
+        }elseif($post->status == 'draft'){
+            $post->status = 'publish';
+        }else{
+            return redirect()->back()->with('error', 'Please Check Your Value');
+        }
+        $post->update();
+        return redirect()->back()->with('success', 'Status Updated Successfully');
+    }
+
     /**
      * Display the specified resource.
      *

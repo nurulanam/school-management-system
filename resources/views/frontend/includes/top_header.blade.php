@@ -5,11 +5,21 @@
                 <div class="header-left-content">
                     <div class="d-flex align-items-center">
                         <button class="default-btn btn btn-sm">Updates</button>
+                        @php
+                            $latestPosts = App\Http\Controllers\frontend\FrontendController::LatestPosts();
+                        @endphp
                         <marquee class="text-light">
                             <ul class="d-flex align-items-center m-0">
-                                <li class="mx-3" style="color: #7743DB;"><a href="" class="text-light">This is news no 1</a></li>
-                                <li class="mx-3" style="color: #7743DB;"><a href="" class="text-light">This is news no 2</a></li>
-                                <li class="mx-3" style="color: #7743DB;"><a href="" class="text-light">This is news no 3</a></li>
+                                @if (count($latestPosts) > 0)
+                                    @foreach ($latestPosts as $post)
+                                        <li class="mx-3" style="color: #7743DB;"><a href="" class="text-light">{{ $post->post_name }}</a></li>
+                                    @endforeach
+                                @else
+                                    <li class="mx-3" style="color: #7743DB;"><a href="" class="text-light">This is news no 1</a></li>
+                                    <li class="mx-3" style="color: #7743DB;"><a href="" class="text-light">This is news no 2</a></li>
+                                    <li class="mx-3" style="color: #7743DB;"><a href="" class="text-light">This is news no 3</a></li>
+
+                                @endif
                             </ul>
                         </marquee>
                     </div>

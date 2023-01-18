@@ -48,6 +48,7 @@
                                             <th>#</th>
                                             <th>Banner</th>
                                             <th>Post title</th>
+                                            <th>Tags</th>
                                             <th>Created By</th>
                                             <th>Status</th>
                                             <th>Action</th>
@@ -65,12 +66,25 @@
                                                 <td>{{ $key += 1 }}</td>
                                                 <td><img src="{{ asset('backend/assets/images/school/post/'.$post->post_banner) }}" class="img-fluid img-thumbnail" width="80px"></td>
                                                 <td>{{ $post->post_name }}</td>
+                                                <td>@foreach ($post->postHasTags as $postHasTag )
+                                                    <span class="badge bg-primary">{{ $postHasTag->tag_id }}</span>
+                                                @endforeach
+                                                {{-- <td>@dd($post->tagName)</td> --}}
                                                 <td>{{ $post->created_by }}</td>
                                                 <td>
-                                                    @if ($post->status == 'publish')
+                                                    {{-- @if ($post->status == 'publish')
                                                         <button class="btn btn-sm btn-primary"><i class="mdi mdi-archive-arrow-up" title="{{ $post->status }}"></i></button>
-                                                    @elseif ($post->status == 'publish')
+                                                    @elseif ($post->status == 'draft')
                                                         <button class="btn btn-sm btn-danger"><i class="mdi mdi-archive-arrow-down" title="{{ $post->status }}"></i></button>
+                                                    @endif --}}
+                                                    @if ($post->status == 'draft')
+                                                        <a href="{{  route('posts.status', $post->id) }}"
+                                                            class="btn btn-danger btn-sm" title="{{ $post->status }}"> <i
+                                                                class="mdi mdi-arrow-down-thin"></i></a>
+                                                    @elseif ($post->status == 'publish')
+                                                        <a href="{{ route('posts.status', $post->id) }}"
+                                                            class="btn btn-primary btn-sm" title="{{ $post->status }}"> <i
+                                                                class="mdi mdi-arrow-up-thin"></i></a>
                                                     @endif
                                                 </td>
                                                 <td>
