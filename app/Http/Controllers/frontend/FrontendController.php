@@ -19,7 +19,8 @@ class FrontendController extends Controller
         $school_info = SchoolSetup::latest()->first();
         $frontCampus = FrontCampus::latest()->first();
         $frontAdmission = FrontAdmission::latest()->first();
-        return view('frontend.pages.index', compact('banners', 'school_info', 'frontCampus','frontAdmission'));
+        $latestPosts = post::latest()->where('status', 'publish')->take(3)->get();
+        return view('frontend.pages.index', compact('banners', 'school_info', 'frontCampus','frontAdmission', 'latestPosts'));
     }
     public static function avater(){
         $school_info = SchoolSetup::latest()->first();

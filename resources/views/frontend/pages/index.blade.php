@@ -103,11 +103,11 @@
                             <div class="campus-title">
                                 <h2>This is Campus Title</h2>
                             </div>
-                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis inventore eum modi!
-                                    Commodi quae recusandae, dolor omnis eius nostrum quaerat., ipsum dolor sit amet
-                                    consectetur adipisicing elit. Vero a impedit nihil veniam tempora perferendis. Quae
-                                    deserunt delectus voluptatem vero!</p>
-                                {{-- <div class="counter">
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis inventore eum modi!
+                                Commodi quae recusandae, dolor omnis eius nostrum quaerat., ipsum dolor sit amet
+                                consectetur adipisicing elit. Vero a impedit nihil veniam tempora perferendis. Quae
+                                deserunt delectus voluptatem vero!</p>
+                            {{-- <div class="counter">
                                 <div class="row">
                                     <div class="col-lg-4 col-4">
                                         <div class="counter-card">
@@ -139,26 +139,26 @@
                                 </div>
                             </div> --}}
 
-                                <a href="#" class="default-btn-1 btn">Button <i class="flaticon-next"></i></a>
-                            </div>
+                            <a href="#" class="default-btn-1 btn">Button <i class="flaticon-next"></i></a>
                         </div>
                     </div>
                 </div>
-                @elseif ($frontCampus !== null)
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <div class="campus-image">
-                                <img src="{{ asset('frontend/assets/images/pages/home/campus') . '/' . $frontCampus->bg_image }}"
-                                    alt="Image">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="campus-content style-2">
-                                <div class="campus-title">
-                                    <h2>{{ $frontCampus->title }}</h2>
-                                </div>
-                                 {!! $frontCampus->campus_description !!}
-                                {{-- <div class="counter">
+        </div>
+    @elseif ($frontCampus !== null)
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="campus-image">
+                    <img src="{{ asset('frontend/assets/images/pages/home/campus') . '/' . $frontCampus->bg_image }}"
+                        alt="Image">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="campus-content style-2">
+                    <div class="campus-title">
+                        <h2>{{ $frontCampus->title }}</h2>
+                    </div>
+                    {!! $frontCampus->campus_description !!}
+                    {{-- <div class="counter">
                             <div class="row">
                                 <div class="col-lg-4 col-4">
                                     <div class="counter-card">
@@ -190,14 +190,14 @@
                             </div>
                         </div> --}}
 
-                                <a href="{{ url("/$frontCampus->button_link") }}"
-                                    class="default-btn-1 btn">{{ $frontCampus->button_text }}<i class="flaticon-next"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="{{ url("/$frontCampus->button_link") }}"
+                        class="default-btn-1 btn">{{ $frontCampus->button_text }}<i class="flaticon-next"></i></a>
                 </div>
-            @endif
+            </div>
         </div>
+    </div>
+    @endif
+    </div>
     </div>
 
 
@@ -728,28 +728,32 @@
                 <p>Lorem ipsum dolor sit amet consectetur adipiscing elit ut elit tellus luctus nec ullamcorper mattis</p>
             </div>
             <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200"
-                    data-aos-once="true">
-                    <div class="single-news-card">
-                        <div class="news-img">
-                            <a href="news-details.html"><img src="{{ asset('frontend') }}/assets/images/news/news-1.jpg"
-                                    alt="Image"></a>
-                        </div>
-                        <div class="news-content">
-                            <div class="list">
-                                <ul>
-                                    <li><i class="flaticon-user"></i>By <a href="news-details.html">Admin</a></li>
-                                    <li><i class="flaticon-tag"></i>Social Sciences</li>
-                                </ul>
+                @foreach ($latestPosts as $latestPost)
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200"
+                        data-aos-once="true">
+                        <div class="single-news-card">
+                            <div class="news-img">
+                                <a href=""><img
+                                        src="{{ asset('backend/assets/images/school/post/'.$latestPost->post_banner) }}" alt="Image"></a>
                             </div>
-                            <a href="news-details.html">
-                                <h3>Professor Tom Comments On The Volunteer B. Snack Brand</h3>
-                            </a>
-                            <a href="news-details.html" class="read-more-btn">Read More<i class="flaticon-next"></i></a>
+                            <div class="news-content">
+                                <div class="list">
+                                    <ul>
+                                        <li><i class="flaticon-user"></i>By <a href="news-details.html">{{ $latestPost->created_by }}</a></li>
+                                        {{-- <li><i class="flaticon-tag"></i>Social Sciences</li> --}}
+                                    </ul>
+                                </div>
+                                <a href="">
+                                    <h3>{{ $latestPost->post_name }}</h3>
+                                </a>
+                                <a href="news-details.html" class="read-more-btn">Read More<i
+                                        class="flaticon-next"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400"
+                @endforeach
+
+                {{-- <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400"
                     data-aos-once="true">
                     <div class="single-news-card">
                         <div class="news-img">
@@ -790,7 +794,7 @@
                             <a href="news-details.html" class="read-more-btn">Read More<i class="flaticon-next"></i></a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="more-latest-news text-center">
                 <p>Select From Hundreds of Options.<a href="latest-news.html" class="read-more-btn active"> More on News<i

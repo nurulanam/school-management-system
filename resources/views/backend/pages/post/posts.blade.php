@@ -66,9 +66,13 @@
                                                 <td>{{ $key += 1 }}</td>
                                                 <td><img src="{{ asset('backend/assets/images/school/post/'.$post->post_banner) }}" class="img-fluid img-thumbnail" width="80px"></td>
                                                 <td>{{ $post->post_name }}</td>
-                                                <td>@foreach ($post->postHasTags as $postHasTag )
-                                                    <span class="badge bg-primary">{{ $postHasTag->tag_id }}</span>
-                                                @endforeach
+                                                <td>
+                                                    {{-- @foreach ($post->postHasTags as $postHasTag )
+                                                        <span class="badge bg-primary">{{ $postHasTag->tag_id }}</span>
+                                                    @endforeach --}}
+                                                    @foreach ($post->postHasTags as $tag )
+                                                        <span class="badge bg-primary">{{ $tag->tag_name }}</span>
+                                                    @endforeach
                                                 {{-- <td>@dd($post->tagName)</td> --}}
                                                 <td>{{ $post->created_by }}</td>
                                                 <td>

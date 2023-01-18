@@ -2,6 +2,7 @@
 
 namespace App\Models\backend;
 
+use App\Models\backend\Tag;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -16,10 +17,10 @@ class post extends Model
         'status',
     ];
 
-    public function postHasTags(){
-        return $this->hasMany('App\Models\backend\PostHasTag');
-    }
-    // public function tagName(){
-    //     return $this->hasMany('App\Models\backend\Tag');
+    // public function postHasTags(){
+    //     return $this->hasMany('App\Models\backend\PostHasTag');
     // }
+    public function postHasTags(){
+        return $this->belongsToMany(Tag::class, 'post_has_tags', 'post_id', 'tag_id');
+    }
 }
