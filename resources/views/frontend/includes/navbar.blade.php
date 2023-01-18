@@ -66,6 +66,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ url('/all-posts') }}" class="nav-linkactive">
+                                Post
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ url('/contact-us') }}" class="nav-linkactive">
                                 Contact Us
                             </a>

@@ -724,7 +724,7 @@
     <div class="lates-news-area ptb-100">
         <div class="container">
             <div class="section-title">
-                <h2>Latest News</h2>
+                <h2>Latest Posts</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipiscing elit ut elit tellus luctus nec ullamcorper mattis</p>
             </div>
             <div class="row justify-content-center">
@@ -744,9 +744,9 @@
                                     </ul>
                                 </div>
                                 <a href="">
-                                    <h3>{{ $latestPost->post_name }}</h3>
+                                    <h3>{{ Str::limit($latestPost->post_name, 50, '...' ) }}</h3>
                                 </a>
-                                <a href="news-details.html" class="read-more-btn">Read More<i
+                                <a href="{{ route('frontend.post.single', $latestPost->id) }}" class="read-more-btn">Read More<i
                                         class="flaticon-next"></i></a>
                             </div>
                         </div>
@@ -797,7 +797,7 @@
                 </div> --}}
             </div>
             <div class="more-latest-news text-center">
-                <p>Select From Hundreds of Options.<a href="latest-news.html" class="read-more-btn active"> More on News<i
+                <p>Read all of our posts <a href="{{ route('frontend.all-posts.index') }}" class="read-more-btn active"> More on Post<i
                             class="flaticon-next"></i></a></p>
             </div>
         </div>

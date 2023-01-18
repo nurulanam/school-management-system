@@ -71,16 +71,10 @@
                                                         <span class="badge bg-primary">{{ $postHasTag->tag_id }}</span>
                                                     @endforeach --}}
                                                     @foreach ($post->postHasTags as $tag )
-                                                        <span class="badge bg-primary">{{ $tag->tag_name }}</span>
+                                                        <span class="badge bg-success">{{ $tag->tag_name }}</span>
                                                     @endforeach
-                                                {{-- <td>@dd($post->tagName)</td> --}}
                                                 <td>{{ $post->created_by }}</td>
                                                 <td>
-                                                    {{-- @if ($post->status == 'publish')
-                                                        <button class="btn btn-sm btn-primary"><i class="mdi mdi-archive-arrow-up" title="{{ $post->status }}"></i></button>
-                                                    @elseif ($post->status == 'draft')
-                                                        <button class="btn btn-sm btn-danger"><i class="mdi mdi-archive-arrow-down" title="{{ $post->status }}"></i></button>
-                                                    @endif --}}
                                                     @if ($post->status == 'draft')
                                                         <a href="{{  route('posts.status', $post->id) }}"
                                                             class="btn btn-danger btn-sm" title="{{ $post->status }}"> <i

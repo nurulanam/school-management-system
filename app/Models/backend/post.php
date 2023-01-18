@@ -17,9 +17,6 @@ class post extends Model
         'status',
     ];
 
-    // public function postHasTags(){
-    //     return $this->hasMany('App\Models\backend\PostHasTag');
-    // }
     public function postHasTags(){
         return $this->belongsToMany(Tag::class, 'post_has_tags', 'post_id', 'tag_id');
     }

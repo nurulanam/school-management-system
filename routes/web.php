@@ -11,6 +11,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FrontCampusController;
 use App\Http\Controllers\frontend\AdmissionController;
 use App\Http\Controllers\frontend\FrontendController;
+use App\Http\Controllers\frontend\FrontPostController;
 use App\Http\Controllers\SchoolSetupController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
@@ -30,6 +31,10 @@ use App\Http\Controllers\TeacherController;
 
 Route::prefix('/')->name('frontend.')->group(function(){
     Route::get('/', [FrontendController::class, 'index'])->name('index');
+
+    // Front Post Controller
+    Route::resource('/all-posts', FrontPostController::class);
+    Route::get('/post/{id}', [FrontPostController::class, 'singlePost'])->name('post.single');
 });
 Route::prefix('/student')->middleware('auth')->group(function()
 {
