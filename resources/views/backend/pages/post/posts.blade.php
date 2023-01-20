@@ -142,8 +142,8 @@
                                                             </div>
                                                         </div>
                                                     </div> --}}
-                                                    <!-- Edit Tag Modal -->
-                                                    {{-- <div id="delete{{ $tag->id }}" class="modal fade" tabindex="-1"
+                                                    <!-- Delete Tag Modal -->
+                                                    <div id="delete{{ $post->id }}" class="modal fade" tabindex="-1"
                                                         aria-labelledby="deleteLabel" aria-hidden="true"
                                                         style="display: none;">
                                                         <div class="modal-dialog">
@@ -154,11 +154,11 @@
                                                                         data-bs-dismiss="modal" aria-label="Close">
                                                                     </button>
                                                                 </div>
-                                                                <form action="{{ route('tags.destroy', $tag->id) }}" method="POST">
+                                                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                                                                     @csrf
                                                                     @method('delete')
                                                                     <div class="modal-body">
-                                                                        <p class="text-danger">Are You Sure to Delete {{ $tag->tag_name }}</p>
+                                                                        <p class="text-danger">Are You Sure to Delete {{ $post->post_name }}</p>
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button class="btn btn-danger mt-3">Delete</button>
@@ -166,7 +166,7 @@
                                                                 </form>
                                                             </div>
                                                         </div>
-                                                    </div> --}}
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach

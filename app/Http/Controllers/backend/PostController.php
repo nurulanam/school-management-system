@@ -124,18 +124,15 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        /// $checkTag = PostHasTag::where('post_id', $post_id)->get();
+        $post = post::find($id);
+        $file = 'backend/assets/images/school/post/'.$post->post_banner;
+        if(File::exists(public_path($file))){
+            File::delete($file);
+        }
+        $post->delete();
+        return redirect()->back()->with('success', 'Post Deleted Successfully');
 
-        // dd($tag_ids);// dd($checkTag);
-            // $checkTag = PostHasTag::where('post_id', $post_id)->where('tag_id', $tag_id)->get();
-            // // dd($checkTag);
-            // if (count($checkTag) > 0) {
-            //     return back()->with('error', 'Tag already exists');
-            // } elseif(count($checkTag) == 0){
-            //     $store->post_id = $post_id;
-            //     $store->tag_id = $tag_id;
-            //     $store->save();
-            // }
+
     }
     public static function postHasTags($post_id, $tag_ids)
     {

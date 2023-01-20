@@ -728,49 +728,50 @@
                 <p>Lorem ipsum dolor sit amet consectetur adipiscing elit ut elit tellus luctus nec ullamcorper mattis</p>
             </div>
             <div class="row justify-content-center">
-                @foreach ($latestPosts as $latestPost)
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200"
-                        data-aos-once="true">
-                        <div class="single-news-card">
-                            <div class="news-img">
-                                <a href=""><img
-                                        src="{{ asset('backend/assets/images/school/post/'.$latestPost->post_banner) }}" alt="Image"></a>
-                            </div>
-                            <div class="news-content">
-                                <div class="list">
-                                    <ul>
-                                        <li><i class="flaticon-user"></i>By <a href="news-details.html">{{ $latestPost->created_by }}</a></li>
-                                        {{-- <li><i class="flaticon-tag"></i>Social Sciences</li> --}}
-                                    </ul>
+                @if (count($latestPosts) > 0)
+                    @foreach ($latestPosts as $latestPost)
+                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200"
+                            data-aos-once="true">
+                            <div class="single-news-card">
+                                <div class="news-img">
+                                    <a href=""><img
+                                            src="{{ asset('backend/assets/images/school/post/'.$latestPost->post_banner) }}" alt="Image"></a>
                                 </div>
-                                <a href="">
-                                    <h3>{{ Str::limit($latestPost->post_name, 50, '...' ) }}</h3>
-                                </a>
-                                <a href="{{ route('frontend.post.single', $latestPost->id) }}" class="read-more-btn">Read More<i
-                                        class="flaticon-next"></i></a>
+                                <div class="news-content">
+                                    <div class="list">
+                                        <ul>
+                                            <li><i class="flaticon-user"></i>By <a href="news-details.html">{{ $latestPost->created_by }}</a></li>
+                                            {{-- <li><i class="flaticon-tag"></i>Social Sciences</li> --}}
+                                        </ul>
+                                    </div>
+                                    <a href="">
+                                        <h3>{{ Str::limit($latestPost->post_name, 50, '...' ) }}</h3>
+                                    </a>
+                                    <a href="{{ route('frontend.post.single', $latestPost->id) }}" class="read-more-btn">Read More<i
+                                            class="flaticon-next"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-
-                {{-- <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400"
+                    @endforeach
+                @else
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400"
                     data-aos-once="true">
                     <div class="single-news-card">
                         <div class="news-img">
-                            <a href="news-details.html"><img src="{{ asset('frontend') }}/assets/images/news/news-2.jpg"
+                            <a href=""><img src="https://via.placeholder.com/400x300/3B3486/FFFFFF/?text=Please Update 400*300"
                                     alt="Image"></a>
                         </div>
                         <div class="news-content">
                             <div class="list">
                                 <ul>
-                                    <li><i class="flaticon-user"></i>By <a href="news-details.html">Admin</a></li>
+                                    <li><i class="flaticon-user"></i>By <a href="#">Admin</a></li>
                                     <li><i class="flaticon-tag"></i>Social Sciences</li>
                                 </ul>
                             </div>
-                            <a href="news-details.html">
+                            <a href="#">
                                 <h3>How To Use Technology To Adapt Your Talent To The World</h3>
                             </a>
-                            <a href="news-details.html" class="read-more-btn">Read More<i class="flaticon-next"></i></a>
+                            <a href="#" class="read-more-btn">Read More<i class="flaticon-next"></i></a>
                         </div>
                     </div>
                 </div>
@@ -778,23 +779,49 @@
                     data-aos-once="true">
                     <div class="single-news-card">
                         <div class="news-img">
-                            <a href="news-details.html"><img src="{{ asset('frontend') }}/assets/images/news/news-3.jpg"
+                            <a href="#"><img src="https://via.placeholder.com/400x300/3B3486/FFFFFF/?text=Please Update 400*300"
                                     alt="Image"></a>
                         </div>
                         <div class="news-content">
                             <div class="list">
                                 <ul>
-                                    <li><i class="flaticon-user"></i>By <a href="news-details.html">Admin</a></li>
+                                    <li><i class="flaticon-user"></i>By <a href="#">Admin</a></li>
                                     <li><i class="flaticon-tag"></i>Social Sciences</li>
                                 </ul>
                             </div>
-                            <a href="news-details.html">
+                            <a href="#">
                                 <h3>Here Are The Things To Look For When Selecting An Online Course</h3>
                             </a>
-                            <a href="news-details.html" class="read-more-btn">Read More<i class="flaticon-next"></i></a>
+                            <a href="#" class="read-more-btn">Read More<i class="flaticon-next"></i></a>
                         </div>
                     </div>
-                </div> --}}
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="600"
+                    data-aos-once="true">
+                    <div class="single-news-card">
+                        <div class="news-img">
+                            <a href="#"><img src="https://via.placeholder.com/400x300/3B3486/FFFFFF/?text=Please Update 400*300"
+                                    alt="Image"></a>
+                        </div>
+                        <div class="news-content">
+                            <div class="list">
+                                <ul>
+                                    <li><i class="flaticon-user"></i>By <a href="#">Admin</a></li>
+                                    <li><i class="flaticon-tag"></i>Social Sciences</li>
+                                </ul>
+                            </div>
+                            <a href="#">
+                                <h3>Here Are The Things To Look For When Selecting An Online Course</h3>
+                            </a>
+                            <a href="#" class="read-more-btn">Read More<i class="flaticon-next"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                @endif
+
+
+
             </div>
             <div class="more-latest-news text-center">
                 <p>Read all of our posts <a href="{{ route('frontend.all-posts.index') }}" class="read-more-btn active"> More on Post<i
